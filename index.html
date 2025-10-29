@@ -144,18 +144,22 @@
              * Get the appropriate version URL
              */
             function getVersionUrl() {
-                // Get base path (handles both local and GitHub Pages)
-                const basePath = window.location.pathname.replace(/\/+$/, '').replace(/index\.html$/, '');
+                // Build URLs relative to current location for proper GitHub Pages support
+                const currentUrl = window.location.href;
+                const baseUrl = currentUrl.replace(/\/$/, '').replace(/\/index\.html$/, '');
+
+                log('Current URL:', currentUrl);
+                log('Base URL:', baseUrl);
 
                 // 1. HIGHEST PRIORITY: Check localStorage for user preference
                 const preference = localStorage.getItem('resume-version-preference');
 
                 if (preference === 'mobile') {
                     log('Using localStorage preference: mobile');
-                    return basePath + '/resume-mobile/';
+                    return baseUrl + '/resume-mobile/';
                 } else if (preference === 'desktop') {
                     log('Using localStorage preference: desktop');
-                    return basePath + '/resume/';
+                    return baseUrl + '/resume/';
                 }
 
                 // 2. No preference set - detect device
@@ -165,10 +169,10 @@
                 // 3. Return appropriate URL
                 if (isMobile) {
                     log('Redirecting to mobile version');
-                    return basePath + '/resume-mobile/';
+                    return baseUrl + '/resume-mobile/';
                 } else {
                     log('Redirecting to desktop version');
-                    return basePath + '/resume/';
+                    return baseUrl + '/resume/';
                 }
             }
 
