@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Timi Olumcev - QA Automation Developer turned AI Builder. Specializing in AI automation, SaaS/PaaS development, and intelligent systems.">
+    <meta name="keywords" content="AI Developer, QA Automation, Machine Learning, Claude, n8n, Supabase, RAG, Agentic AI">
+    <meta name="author" content="Timi Olumcev">
+    <title>Timi Olumcev - AI Automation Developer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            overflow: hidden;
+        }
+        .loader-container {
+            text-align: center;
+            padding: 2rem;
+        }
+        .logo {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1.5rem;
+            background: linear-gradient(135deg, #06b6d4, #3b82f6);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            font-weight: 800;
+            box-shadow: 0 10px 40px rgba(6, 182, 212, 0.3);
+            animation: pulse 2s ease-in-out infinite;
+        }
+        .message {
+            font-size: 1.2rem;
+            color: #94a3b8;
+            margin-bottom: 1rem;
+        }
+        .spinner {
+            width: 40px;
+            height: 40px;
+            margin: 1rem auto;
+            border: 4px solid rgba(6, 182, 212, 0.2);
+            border-top-color: #06b6d4;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.05); opacity: 0.8; }
+        }
+        .debug-info {
+            position: fixed;
+            bottom: 1rem;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.75rem;
+            color: #64748b;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="loader-container">
+        <div class="logo">TO</div>
+        <div class="message">Detecting device...</div>
+        <div class="spinner"></div>
+        <div class="debug-info" id="debug-info"></div>
+    </div>
+
+    <script>
+        /**
+         * Device Detection and Routing Logic
+         * Priority: localStorage preference > touch + screen size > userAgent > default
+         */
+        (function() {
+            const DEBUG = false; // Set to true for debugging
+
+            function log(message, data = null) {
+                if (DEBUG) {
+                    console.log(`[Device Detection] ${message}`, data || '');
+                    const debugEl = document.getElementById('debug-info');
+                    if (debugEl) {
+                        debugEl.textContent += message + ' ';
+                    }
+                }
+            }
+
+            /**
+             * Check if device is mobile based on multiple criteria
+             */
+            function isMobileDevice() {
+                const checks = {
+                    userAgent: false,
+                    touchCapable: false,
+                    screenWidth: false,
+                    viewportWidth: false
+                };
+
+                // 1. Check UserAgent (common mobile patterns)
+                const mobileRegex = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini|Mobile|Tablet/i;
+                checks.userAgent = mobileRegex.test(navigator.userAgent);
+                log('UserAgent check:', checks.userAgent);
+
+                // 2. Check touch capability
+                checks.touchCapable = ('ontouchstart' in window) ||
+                                     (navigator.maxTouchPoints > 0) ||
+                                     (navigator.msMaxTouchPoints > 0);
+                log('Touch capable:', checks.touchCapable);
+
+                // 3. Check screen width (physical device)
+                checks.screenWidth = window.screen.width < 768;
+                log('Screen width < 768:', checks.screenWidth);
+
+                // 4. Check viewport width (browser window)
+                checks.viewportWidth = window.innerWidth < 768;
+                log('Viewport width < 768:', checks.viewportWidth);
+
+                // Decision logic: Mobile if userAgent OR (touch + small screen) OR (just small screen)
+                const isMobile = checks.userAgent ||
+                               (checks.touchCapable && checks.screenWidth) ||
+                               (checks.screenWidth && checks.viewportWidth);
+
+                log('Final mobile decision:', isMobile);
+                log('All checks:', checks);
+
+                return isMobile;
+            }
+
+            /**
+             * Get the appropriate version URL
+             */
+            function getVersionUrl() {
+                // 1. HIGHEST PRIORITY: Check localStorage for user preference
+                const preference = localStorage.getItem('resume-version-preference');
+
+                if (preference === 'mobile') {
+                    log('Using localStorage preference: mobile');
+                    return '/resume-mobile/';
+                } else if (preference === 'desktop') {
+                    log('Using localStorage preference: desktop');
+                    return '/resume/';
+                }
+
+                // 2. No preference set - detect device
+                log('No localStorage preference, detecting device...');
+                const isMobile = isMobileDevice();
+
+                // 3. Return appropriate URL
+                if (isMobile) {
+                    log('Redirecting to mobile version');
+                    return '/resume-mobile/';
+                } else {
+                    log('Redirecting to desktop version');
+                    return '/resume/';
+                }
+            }
+
+            /**
+             * Perform redirect with error handling
+             */
+            function redirect() {
+                try {
+                    const targetUrl = getVersionUrl();
+                    const currentPath = window.location.pathname;
+
+                    // Prevent redirect loop - if already on correct page, do nothing
+                    if (currentPath.includes('/resume/') || currentPath.includes('/resume-mobile/')) {
+                        log('Already on versioned page, no redirect needed');
+                        return;
+                    }
+
+                    log(`Redirecting to: ${targetUrl}`);
+
+                    // Update message
+                    const messageEl = document.querySelector('.message');
+                    if (messageEl) {
+                        messageEl.textContent = 'Redirecting...';
+                    }
+
+                    // Perform redirect
+                    window.location.href = targetUrl;
+                } catch (error) {
+                    console.error('[Device Detection] Redirect error:', error);
+                    // Fallback to desktop version on error
+                    window.location.href = '/resume/';
+                }
+            }
+
+            // Execute redirect immediately
+            log('Starting device detection...');
+            log('User agent:', navigator.userAgent);
+            log('Screen dimensions:', `${window.screen.width}x${window.screen.height}`);
+            log('Viewport dimensions:', `${window.innerWidth}x${window.innerHeight}`);
+
+            redirect();
+        })();
+    </script>
+</body>
+</html>
