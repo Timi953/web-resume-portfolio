@@ -1,0 +1,953 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Timi Olumcev - QA Automation Developer turned AI Builder. Specializing in AI automation, SaaS/PaaS development, and intelligent systems.">
+    <meta name="keywords" content="AI Developer, QA Automation, Machine Learning, Claude, n8n, Supabase, RAG, Agentic AI">
+    <meta name="author" content="Timi Olumcev">
+    <title>Timi Olumcev - AI Automation Developer</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com" defer></script>
+
+    <!-- jQuery (required for ripples) -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" defer></script>
+
+    <!-- jQuery Ripples Plugin -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery.ripples/dist/jquery.ripples.min.js" defer></script>
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Resource Preloading -->
+    <link rel="preload" href="css/portfolio.css" as="style">
+    <link rel="preload" href="js/main.js" as="script">
+
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="css/portfolio.css">
+</head>
+<body class="font-inter antialiased">
+    <!-- Water Ripple Background Container (z-0) -->
+    <!-- EXACT PATTERN FROM WORKING DIAGNOSTIC: Canvas z-5, Overlay z-6, Content z-10 -->
+    <div id="ripple-container" class="fixed inset-0 z-0"
+         style="background: url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;">
+        <!-- Dark overlay - NO TAILWIND CLASSES, pure inline style like diagnostic -->
+        <div style="position: absolute; inset: 0; z-index: 6; pointer-events: none; background: linear-gradient(to bottom, rgba(15, 23, 42, 0.4), rgba(15, 23, 42, 0.7));"></div>
+    </div>
+
+    <!-- Upper Left Corner Navigation with TO Badge -->
+    <div class="blob-nav-container fixed left-0 top-0 z-50 pointer-events-none">
+        <!-- TO Badge - Central Element with Artistic SVG Logo -->
+        <div class="to-badge-nav pointer-events-auto">
+            <svg width="70" height="70" viewBox="0 0 70 70" xmlns="http://www.w3.org/2000/svg" class="to-logo-svg">
+                <defs>
+                    <!-- 3D Sphere gradient for background -->
+                    <radialGradient id="badge-sphere-gradient" cx="35%" cy="35%">
+                        <stop offset="0%" style="stop-color:#ffffff;stop-opacity:0.4" />
+                        <stop offset="30%" style="stop-color:#06b6d4;stop-opacity:0.9" />
+                        <stop offset="70%" style="stop-color:#0284c7;stop-opacity:1" />
+                        <stop offset="100%" style="stop-color:#0369a1;stop-opacity:1" />
+                    </radialGradient>
+
+                    <!-- Text gradient -->
+                    <linearGradient id="text-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color:#ffffff;stop-opacity:1" />
+                        <stop offset="100%" style="stop-color:#e0f2fe;stop-opacity:0.95" />
+                    </linearGradient>
+                </defs>
+
+                <!-- Background circle with 3D gradient -->
+                <circle cx="35" cy="35" r="33" fill="url(#badge-sphere-gradient)" opacity="0.3"/>
+
+                <!-- Artistic geometric pattern -->
+                <g opacity="0.15">
+                    <!-- Outer ring segments -->
+                    <path d="M 35 5 A 30 30 0 0 1 60 30" stroke="#06b6d4" stroke-width="2" fill="none" opacity="0.8"/>
+                    <path d="M 60 30 A 30 30 0 0 1 60 40" stroke="#06b6d4" stroke-width="2" fill="none" opacity="0.6"/>
+                    <path d="M 35 65 A 30 30 0 0 1 10 40" stroke="#06b6d4" stroke-width="2" fill="none" opacity="0.8"/>
+                    <path d="M 10 40 A 30 30 0 0 1 10 30" stroke="#06b6d4" stroke-width="2" fill="none" opacity="0.6"/>
+                </g>
+
+                <!-- TO Text with 3D effect -->
+                <text x="35" y="43" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif"
+                      font-size="26" font-weight="800" fill="url(#text-gradient)"
+                      style="filter: drop-shadow(1px 1px 2px rgba(0,0,0,0.4)) drop-shadow(0 0 8px rgba(6, 182, 212, 0.6));">TO</text>
+            </svg>
+        </div>
+
+        <!-- SVG Navigation Circles (Radial Pattern with Icons) -->
+        <svg class="nav-radial-svg" width="400" height="400" viewBox="0 0 400 400" xmlns="http://www.w3.org/2000/svg">
+            <!-- Gradient Definitions -->
+            <defs>
+                <!-- 3D Sphere Gradient for navigation circles -->
+                <radialGradient id="nav-sphere-gradient" cx="35%" cy="35%">
+                    <stop offset="0%" style="stop-color:#ffffff;stop-opacity:0.6" />
+                    <stop offset="30%" style="stop-color:#06b6d4;stop-opacity:0.95" />
+                    <stop offset="70%" style="stop-color:#0284c7;stop-opacity:1" />
+                    <stop offset="100%" style="stop-color:#0369a1;stop-opacity:1" />
+                </radialGradient>
+
+                <!-- Filter with extended region to prevent clipping of glow -->
+                <filter id="nav-glow" x="-50%" y="-50%" width="200%" height="200%" filterUnits="objectBoundingBox">
+                    <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+                    <feMerge>
+                        <feMergeNode in="coloredBlur"/>
+                        <feMergeNode in="SourceGraphic"/>
+                    </feMerge>
+                </filter>
+
+                <!-- Inner shadow for 3D depth -->
+                <filter id="nav-inner-shadow" x="-50%" y="-50%" width="200%" height="200%">
+                    <feGaussianBlur in="SourceAlpha" stdDeviation="2"/>
+                    <feOffset dx="-1" dy="-1" result="offsetblur"/>
+                    <feFlood flood-color="#000000" flood-opacity="0.4"/>
+                    <feComposite in2="offsetblur" operator="in"/>
+                    <feMerge>
+                        <feMergeNode/>
+                        <feMergeNode in="SourceGraphic"/>
+                    </feMerge>
+                </filter>
+            </defs>
+
+            <!-- Navigation Circles in Radial Pattern (start at TO position, split radially) -->
+            <g id="nav-circles" opacity="0">
+                <!-- Home Circle with Icon -->
+                <g id="circle-home" class="nav-circle" transform="translate(60, 60)">
+                    <circle cx="0" cy="0" r="20" fill="url(#nav-sphere-gradient)" filter="url(#nav-glow)" />
+                    <text x="0" y="0" text-anchor="middle" dominant-baseline="central"
+                          font-family="FontAwesome" font-size="14" fill="#ffffff" class="nav-icon">&#xf015;</text>
+                </g>
+
+                <!-- About Circle with Icon -->
+                <g id="circle-about" class="nav-circle" transform="translate(60, 60)">
+                    <circle cx="0" cy="0" r="20" fill="url(#nav-sphere-gradient)" filter="url(#nav-glow)" />
+                    <text x="0" y="0" text-anchor="middle" dominant-baseline="central"
+                          font-family="FontAwesome" font-size="14" fill="#ffffff" class="nav-icon">&#xf007;</text>
+                </g>
+
+                <!-- Skills Circle with Icon -->
+                <g id="circle-skills" class="nav-circle" transform="translate(60, 60)">
+                    <circle cx="0" cy="0" r="20" fill="url(#nav-sphere-gradient)" filter="url(#nav-glow)" />
+                    <text x="0" y="0" text-anchor="middle" dominant-baseline="central"
+                          font-family="FontAwesome" font-size="14" fill="#ffffff" class="nav-icon">&#xf121;</text>
+                </g>
+
+                <!-- Experience Circle with Icon -->
+                <g id="circle-experience" class="nav-circle" transform="translate(60, 60)">
+                    <circle cx="0" cy="0" r="20" fill="url(#nav-sphere-gradient)" filter="url(#nav-glow)" />
+                    <text x="0" y="0" text-anchor="middle" dominant-baseline="central"
+                          font-family="FontAwesome" font-size="14" fill="#ffffff" class="nav-icon">&#xf0b1;</text>
+                </g>
+
+                <!-- Contact Circle with Icon -->
+                <g id="circle-contact" class="nav-circle" transform="translate(60, 60)">
+                    <circle cx="0" cy="0" r="20" fill="url(#nav-sphere-gradient)" filter="url(#nav-glow)" />
+                    <text x="0" y="0" text-anchor="middle" dominant-baseline="central"
+                          font-family="FontAwesome" font-size="14" fill="#ffffff" class="nav-icon">&#xf0e0;</text>
+                </g>
+            </g>
+        </svg>
+
+        <!-- Navigation Items Overlay (Hidden - icons now in SVG) -->
+        <div class="nav-items-radial" style="display: none;">
+            <a href="#home" class="nav-item pointer-events-auto" data-circle="home" aria-label="Home"></a>
+            <a href="#about" class="nav-item pointer-events-auto" data-circle="about" aria-label="About"></a>
+            <a href="#skills" class="nav-item pointer-events-auto" data-circle="skills" aria-label="Skills"></a>
+            <a href="#experience" class="nav-item pointer-events-auto" data-circle="experience" aria-label="Experience"></a>
+            <a href="#contact" class="nav-item pointer-events-auto" data-circle="contact" aria-label="Contact"></a>
+        </div>
+    </div>
+
+
+    <!-- Main Content Wrapper - scrollable layer with native smooth scrolling -->
+    <div id="scroll-container" style="position: fixed; inset: 0; z-index: 10; overflow-y: scroll; scroll-behavior: smooth; pointer-events: auto;">
+        <main style="pointer-events: none;">
+        <!-- Hero Section -->
+        <section id="home" class="min-h-screen flex items-center justify-center px-6">
+            <div class="container mx-auto text-center">
+                <!-- Profile Image -->
+                <div class="mb-8 flex justify-center">
+                    <div class="relative">
+                        <div class="absolute inset-0 bg-gradient-to-r from-cyan-400 to-blue-500 rounded-full blur-xl opacity-50 animate-pulse-slow"></div>
+                        <div class="relative w-40 h-40 rounded-full overflow-hidden border-4 border-white/20 shadow-2xl">
+                            <div class="w-full h-full bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center">
+                                <span class="text-6xl font-bold text-white">TO</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Name with Typewriter Effect -->
+                <h1 class="text-5xl md:text-7xl font-bold mb-4">
+                    <span id="typewriter-name" class="inline-block gradient-name"></span>
+                    <span class="animate-blink gradient-name">|</span>
+                </h1>
+
+                <!-- Subtitle with Animation -->
+                <div class="text-xl md:text-3xl text-cyan-300 mb-6 font-light">
+                    <span id="typewriter-subtitle" class="inline-block"></span>
+                </div>
+
+                <!-- Tagline -->
+                <p class="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto mb-8 leading-relaxed">
+                    I started my career ensuring things work perfectly — now I make things that <span class="text-cyan-400 font-semibold">think for themselves</span>.
+                </p>
+
+                <!-- AI Skills Badges -->
+                <div class="flex flex-wrap justify-center gap-3 mb-12 max-w-4xl mx-auto">
+                    <span class="ai-badge">Claude Code</span>
+                    <span class="ai-badge">n8n</span>
+                    <span class="ai-badge">RAG</span>
+                    <span class="ai-badge">Agentic AI</span>
+                    <span class="ai-badge">Supabase</span>
+                    <span class="ai-badge">MCP</span>
+                    <span class="ai-badge">Amazon Bedrock</span>
+                    <span class="ai-badge">GCP</span>
+                </div>
+
+                <!-- CTA Buttons -->
+                <div class="flex flex-wrap justify-center gap-4 mb-12">
+                    <a href="#experience" class="btn-primary">
+                        <i class="fas fa-briefcase mr-2"></i>
+                        View Experience
+                    </a>
+                    <a href="#contact" class="btn-secondary">
+                        <i class="fas fa-envelope mr-2"></i>
+                        Get In Touch
+                    </a>
+                </div>
+
+                <!-- Social Links -->
+                <div class="flex justify-center gap-6">
+                    <a href="https://www.linkedin.com/in/timi-olumcev-951770205/" target="_blank" class="social-link" title="LinkedIn">
+                        <i class="fab fa-linkedin text-2xl"></i>
+                    </a>
+                    <a href="https://github.com/Timi953" target="_blank" class="social-link" title="GitHub">
+                        <i class="fab fa-github text-2xl"></i>
+                    </a>
+                    <a href="mailto:tolumcev@gmail.com" class="social-link" title="Email">
+                        <i class="fas fa-envelope text-2xl"></i>
+                    </a>
+                    <a href="tel:+38978650255" class="social-link" title="Phone">
+                        <i class="fas fa-phone text-2xl"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="min-h-screen flex items-center justify-center px-6 py-20">
+            <div class="container mx-auto max-w-6xl">
+                <h2 class="section-title">About Me</h2>
+
+                <div class="grid md:grid-cols-2 gap-8">
+                    <!-- About Card -->
+                    <div class="glass-card p-8 fade-in">
+                        <h3 class="text-2xl font-bold text-white mb-4">
+                            <i class="fas fa-robot text-cyan-400 mr-2"></i>
+                            The Journey
+                        </h3>
+                        <p class="text-gray-300 mb-4 leading-relaxed">
+                            After several years in Automation QA, I caught the AI fever and never looked back. Today, I design and build <span class="text-cyan-400 font-semibold">SaaS and PaaS solutions powered by AI</span>, helping clients solve unique problems with speed, scalability, and intelligence.
+                        </p>
+                        <p class="text-gray-300 leading-relaxed">
+                            I bring a <span class="text-cyan-400 font-semibold">"nothing is impossible to build"</span> mindset to every project — whether it's integrating LLMs into existing workflows, automating decision-making systems, or creating cloud-native applications that just work smarter.
+                        </p>
+                    </div>
+
+                    <!-- Principles -->
+                    <div class="glass-card p-8 fade-in" style="animation-delay: 0.2s;">
+                        <h3 class="text-2xl font-bold text-white mb-6">
+                            <i class="fas fa-lightbulb text-cyan-400 mr-2"></i>
+                            My Approach
+                        </h3>
+                        <div class="space-y-4">
+                            <div class="flex items-start">
+                                <i class="fas fa-cogs text-cyan-400 text-xl mt-1 mr-3"></i>
+                                <div>
+                                    <h4 class="text-white font-semibold">Build fast, but build right</h4>
+                                    <p class="text-gray-400 text-sm">Quality and speed aren't mutually exclusive</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <i class="fas fa-brain text-cyan-400 text-xl mt-1 mr-3"></i>
+                                <div>
+                                    <h4 class="text-white font-semibold">Learn fearlessly</h4>
+                                    <p class="text-gray-400 text-sm">From new AI frameworks to obscure APIs</p>
+                                </div>
+                            </div>
+                            <div class="flex items-start">
+                                <i class="fas fa-shield-alt text-cyan-400 text-xl mt-1 mr-3"></i>
+                                <div>
+                                    <h4 class="text-white font-semibold">Focus on value</h4>
+                                    <p class="text-gray-400 text-sm">Reliability, security, and value for money</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Stats -->
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8">
+                    <div class="stat-card">
+                        <div class="stat-number">4+</div>
+                        <div class="stat-label">Years in QA</div>
+                    </div>
+                    <div class="stat-card" style="animation-delay: 0.1s;">
+                        <div class="stat-number">AI</div>
+                        <div class="stat-label">Automation Expert</div>
+                    </div>
+                    <div class="stat-card" style="animation-delay: 0.2s;">
+                        <div class="stat-number">SaaS</div>
+                        <div class="stat-label">PaaS Builder</div>
+                    </div>
+                    <div class="stat-card" style="animation-delay: 0.3s;">
+                        <div class="stat-number">∞</div>
+                        <div class="stat-label">Possibilities</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- AI Skills Section -->
+        <section id="skills" class="min-h-screen flex items-center justify-center px-6 py-20">
+            <div class="container mx-auto max-w-7xl">
+                <h2 class="section-title">AI & Automation Arsenal</h2>
+                <p class="text-center text-gray-400 mb-12 max-w-2xl mx-auto">
+                    Cutting-edge technologies I work with to build intelligent, scalable solutions
+                </p>
+
+                <!-- Primary AI Skills -->
+                <div class="mb-16">
+                    <h3 class="text-2xl font-bold text-cyan-400 mb-6 text-center">
+                        <i class="fas fa-star mr-2"></i>
+                        Primary AI Technologies
+                    </h3>
+                    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6" id="primary-skills">
+                        <!-- Skills will be dynamically populated -->
+                    </div>
+                </div>
+
+                <!-- QA & DevOps Skills -->
+                <div class="mb-16">
+                    <h3 class="text-2xl font-bold text-purple-400 mb-6 text-center">
+                        <i class="fas fa-code mr-2"></i>
+                        QA Automation & DevOps
+                    </h3>
+                    <div class="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4" id="qa-skills">
+                        <!-- Skills will be dynamically populated -->
+                    </div>
+                </div>
+
+                <!-- Languages -->
+                <div>
+                    <h3 class="text-2xl font-bold text-green-400 mb-6 text-center">
+                        <i class="fas fa-language mr-2"></i>
+                        Languages
+                    </h3>
+                    <div class="flex flex-wrap justify-center gap-4">
+                        <div class="language-badge" data-lang="macedonian">
+                            <span class="text-lg">🇲🇰</span>
+                            <span>Macedonian (Native)</span>
+                        </div>
+                        <div class="language-badge" data-lang="english">
+                            <span class="text-lg">🇬🇧</span>
+                            <span>English (Fluent)</span>
+                        </div>
+                        <div class="language-badge" data-lang="romanian">
+                            <span class="text-lg">🇷🇴</span>
+                            <span>Romanian (Advanced)</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Experience Timeline Section -->
+        <section id="experience" class="min-h-screen relative px-6 py-20">
+            <div class="container mx-auto max-w-6xl relative" style="min-height: 500vh;">
+                <!-- Title positioned to the left on desktop, centered on mobile -->
+                <div class="experience-header mb-12">
+                    <h2 class="section-title">Career Growth</h2>
+                    <p class="text-gray-400 max-w-md">
+                        Watch my journey bloom from quality assurance to AI innovation
+                    </p>
+                </div>
+
+                <!-- SVG Career Tree - Premium Organic Timeline -->
+                <svg id="career-tree-svg" class="absolute inset-0 pointer-events-none z-1"
+                     viewBox="0 0 1200 5000" preserveAspectRatio="xMidYMin meet" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Gradient Definitions -->
+                    <defs>
+                        <!-- Leaf Shape Clip Paths for Cards -->
+                        <clipPath id="leaf-clip-green" clipPathUnits="objectBoundingBox">
+                            <path d="M 0.5 0 C 0.55 0.02, 0.65 0.08, 0.75 0.15 C 0.82 0.2, 0.88 0.28, 0.92 0.38 C 0.95 0.48, 0.95 0.6, 0.9 0.7 C 0.85 0.78, 0.75 0.85, 0.6 0.9 C 0.55 0.92, 0.5 0.95, 0.5 1 C 0.5 0.95, 0.45 0.92, 0.4 0.9 C 0.25 0.85, 0.15 0.78, 0.1 0.7 C 0.05 0.6, 0.05 0.48, 0.08 0.38 C 0.12 0.28, 0.18 0.2, 0.25 0.15 C 0.35 0.08, 0.45 0.02, 0.5 0 Z" />
+                        </clipPath>
+
+                        <clipPath id="leaf-clip-indigo" clipPathUnits="objectBoundingBox">
+                            <path d="M 0.5 0 C 0.58 0.02, 0.68 0.1, 0.76 0.18 C 0.83 0.25, 0.89 0.35, 0.92 0.45 C 0.94 0.55, 0.93 0.65, 0.88 0.75 C 0.82 0.83, 0.72 0.88, 0.58 0.92 C 0.54 0.94, 0.5 0.96, 0.5 1 C 0.5 0.96, 0.46 0.94, 0.42 0.92 C 0.28 0.88, 0.18 0.83, 0.12 0.75 C 0.07 0.65, 0.06 0.55, 0.08 0.45 C 0.11 0.35, 0.17 0.25, 0.24 0.18 C 0.32 0.1, 0.42 0.02, 0.5 0 Z" />
+                        </clipPath>
+
+                        <clipPath id="leaf-clip-blue" clipPathUnits="objectBoundingBox">
+                            <path d="M 0.5 0 C 0.56 0.03, 0.66 0.12, 0.73 0.22 C 0.8 0.3, 0.86 0.4, 0.9 0.5 C 0.93 0.58, 0.92 0.68, 0.87 0.77 C 0.8 0.84, 0.68 0.88, 0.54 0.91 C 0.52 0.93, 0.5 0.97, 0.5 1 C 0.5 0.97, 0.48 0.93, 0.46 0.91 C 0.32 0.88, 0.2 0.84, 0.13 0.77 C 0.08 0.68, 0.07 0.58, 0.1 0.5 C 0.14 0.4, 0.2 0.3, 0.27 0.22 C 0.34 0.12, 0.44 0.03, 0.5 0 Z" />
+                        </clipPath>
+
+                        <clipPath id="leaf-clip-purple" clipPathUnits="objectBoundingBox">
+                            <path d="M 0.5 0 C 0.57 0.025, 0.67 0.09, 0.75 0.17 C 0.82 0.24, 0.88 0.33, 0.91 0.43 C 0.94 0.53, 0.94 0.63, 0.89 0.72 C 0.83 0.81, 0.74 0.87, 0.6 0.91 C 0.55 0.93, 0.5 0.96, 0.5 1 C 0.5 0.96, 0.45 0.93, 0.4 0.91 C 0.26 0.87, 0.17 0.81, 0.11 0.72 C 0.06 0.63, 0.06 0.53, 0.09 0.43 C 0.12 0.33, 0.18 0.24, 0.25 0.17 C 0.33 0.09, 0.43 0.025, 0.5 0 Z" />
+                        </clipPath>
+
+                        <clipPath id="leaf-clip-cyan" clipPathUnits="objectBoundingBox">
+                            <path d="M 0.5 0 C 0.56 0.02, 0.64 0.08, 0.72 0.16 C 0.8 0.23, 0.87 0.32, 0.91 0.42 C 0.94 0.52, 0.93 0.62, 0.88 0.71 C 0.82 0.79, 0.72 0.86, 0.58 0.9 C 0.54 0.92, 0.5 0.95, 0.5 1 C 0.5 0.95, 0.46 0.92, 0.42 0.9 C 0.28 0.86, 0.18 0.79, 0.12 0.71 C 0.07 0.62, 0.06 0.52, 0.09 0.42 C 0.13 0.32, 0.2 0.23, 0.28 0.16 C 0.36 0.08, 0.44 0.02, 0.5 0 Z" />
+                        </clipPath>
+
+                        <!-- Trunk Gradient -->
+                        <linearGradient id="trunk-gradient" x1="0%" y1="100%" x2="0%" y2="0%">
+                            <stop offset="0%" style="stop-color:#3e2723;stop-opacity:1" />
+                            <stop offset="50%" style="stop-color:#5d4037;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#06b6d4;stop-opacity:1" />
+                        </linearGradient>
+
+                        <!-- Leaf Glow Gradients -->
+                        <radialGradient id="leaf-glow-green" cx="50%" cy="50%">
+                            <stop offset="0%" style="stop-color:#22c55e;stop-opacity:0.3" />
+                            <stop offset="100%" style="stop-color:#16a34a;stop-opacity:0.15" />
+                        </radialGradient>
+                        <radialGradient id="leaf-glow-indigo" cx="50%" cy="50%">
+                            <stop offset="0%" style="stop-color:#6366f1;stop-opacity:0.3" />
+                            <stop offset="100%" style="stop-color:#4f46e5;stop-opacity:0.15" />
+                        </radialGradient>
+                        <radialGradient id="leaf-glow-blue" cx="50%" cy="50%">
+                            <stop offset="0%" style="stop-color:#3b82f6;stop-opacity:0.3" />
+                            <stop offset="100%" style="stop-color:#2563eb;stop-opacity:0.15" />
+                        </radialGradient>
+                        <radialGradient id="leaf-glow-purple" cx="50%" cy="50%">
+                            <stop offset="0%" style="stop-color:#a855f7;stop-opacity:0.3" />
+                            <stop offset="100%" style="stop-color:#7c3aed;stop-opacity:0.15" />
+                        </radialGradient>
+                        <radialGradient id="leaf-glow-cyan" cx="50%" cy="50%">
+                            <stop offset="0%" style="stop-color:#06b6d4;stop-opacity:0.3" />
+                            <stop offset="100%" style="stop-color:#0891b2;stop-opacity:0.15" />
+                        </radialGradient>
+
+                        <!-- Leaf Body Gradients -->
+                        <radialGradient id="leaf-gradient-green" cx="40%" cy="40%">
+                            <stop offset="0%" style="stop-color:#22c55e;stop-opacity:0.4" />
+                            <stop offset="100%" style="stop-color:#16a34a;stop-opacity:0.2" />
+                        </radialGradient>
+                        <radialGradient id="leaf-gradient-indigo" cx="40%" cy="40%">
+                            <stop offset="0%" style="stop-color:#6366f1;stop-opacity:0.4" />
+                            <stop offset="100%" style="stop-color:#4f46e5;stop-opacity:0.2" />
+                        </radialGradient>
+                        <radialGradient id="leaf-gradient-blue" cx="40%" cy="40%">
+                            <stop offset="0%" style="stop-color:#3b82f6;stop-opacity:0.4" />
+                            <stop offset="100%" style="stop-color:#2563eb;stop-opacity:0.2" />
+                        </radialGradient>
+                        <radialGradient id="leaf-gradient-purple" cx="40%" cy="40%">
+                            <stop offset="0%" style="stop-color:#a855f7;stop-opacity:0.4" />
+                            <stop offset="100%" style="stop-color:#7c3aed;stop-opacity:0.2" />
+                        </radialGradient>
+                        <radialGradient id="leaf-gradient-cyan" cx="40%" cy="40%">
+                            <stop offset="0%" style="stop-color:#06b6d4;stop-opacity:0.4" />
+                            <stop offset="100%" style="stop-color:#0891b2;stop-opacity:0.2" />
+                        </radialGradient>
+
+                        <!-- Branch Gradient -->
+                        <linearGradient id="branch-gradient" x1="0%" y1="50%" x2="100%" y2="50%">
+                            <stop offset="0%" style="stop-color:#5d4037;stop-opacity:1" />
+                            <stop offset="100%" style="stop-color:#06b6d4;stop-opacity:0.8" />
+                        </linearGradient>
+
+                        <!-- Glow Filters for Leaves -->
+                        <filter id="glow-green" x="-50%" y="-50%" width="200%" height="200%">
+                            <feGaussianBlur stdDeviation="8" result="coloredBlur"/>
+                            <feMerge>
+                                <feMergeNode in="coloredBlur"/>
+                                <feMergeNode in="SourceGraphic"/>
+                            </feMerge>
+                        </filter>
+                        <filter id="glow-indigo" x="-50%" y="-50%" width="200%" height="200%">
+                            <feGaussianBlur stdDeviation="8" result="coloredBlur"/>
+                            <feMerge>
+                                <feMergeNode in="coloredBlur"/>
+                                <feMergeNode in="SourceGraphic"/>
+                            </feMerge>
+                        </filter>
+                        <filter id="glow-blue" x="-50%" y="-50%" width="200%" height="200%">
+                            <feGaussianBlur stdDeviation="8" result="coloredBlur"/>
+                            <feMerge>
+                                <feMergeNode in="coloredBlur"/>
+                                <feMergeNode in="SourceGraphic"/>
+                            </feMerge>
+                        </filter>
+                        <filter id="glow-purple" x="-50%" y="-50%" width="200%" height="200%">
+                            <feGaussianBlur stdDeviation="8" result="coloredBlur"/>
+                            <feMerge>
+                                <feMergeNode in="coloredBlur"/>
+                                <feMergeNode in="SourceGraphic"/>
+                            </feMerge>
+                        </filter>
+                        <filter id="glow-cyan" x="-50%" y="-50%" width="200%" height="200%">
+                            <feGaussianBlur stdDeviation="10" result="coloredBlur"/>
+                            <feMerge>
+                                <feMergeNode in="coloredBlur"/>
+                                <feMergeNode in="SourceGraphic"/>
+                            </feMerge>
+                        </filter>
+                    </defs>
+
+                    <!-- Tree Trunk - Organic curves -->
+                    <path id="tree-trunk"
+                          d="M 600 5000 C 620 4800, 580 4600, 590 4400 C 595 4200, 575 4000, 590 3800 C 610 3600, 620 3400, 610 3200 C 600 3000, 580 2800, 595 2600 C 610 2400, 625 2200, 615 2000 C 605 1800, 585 1600, 600 1400 C 615 1200, 630 1000, 615 800 C 600 600, 580 400, 590 200 C 595 100, 600 50, 600 0"
+                          fill="none" stroke="url(#trunk-gradient)" stroke-width="14" stroke-linecap="round" opacity="0.7" />
+
+                    <!-- Main Branches to Cards -->
+                    <path id="branch-1" class="tree-branch" data-index="0"
+                          d="M 590 3800 C 560 3800, 500 3810, 420 3800 C 350 3790, 280 3770, 200 3750"
+                          fill="none" stroke="url(#branch-gradient)" stroke-width="6" stroke-linecap="round" opacity="0.6" />
+
+                    <path id="branch-2" class="tree-branch" data-index="1"
+                          d="M 610 3200 C 650 3205, 720 3215, 820 3205 C 900 3198, 970 3185, 1050 3170"
+                          fill="none" stroke="url(#branch-gradient)" stroke-width="6" stroke-linecap="round" opacity="0.6" />
+
+                    <path id="branch-3" class="tree-branch" data-index="2"
+                          d="M 595 2600 C 560 2605, 490 2615, 410 2605 C 330 2595, 250 2575, 180 2560"
+                          fill="none" stroke="url(#branch-gradient)" stroke-width="6" stroke-linecap="round" opacity="0.6" />
+
+                    <path id="branch-4" class="tree-branch" data-index="3"
+                          d="M 600 1400 C 640 1405, 710 1415, 810 1405 C 890 1398, 960 1385, 1040 1370"
+                          fill="none" stroke="url(#branch-gradient)" stroke-width="6" stroke-linecap="round" opacity="0.6" />
+
+                    <path id="branch-5" class="tree-branch" data-index="4"
+                          d="M 615 800 C 580 805, 510 815, 430 805 C 350 795, 270 775, 200 760"
+                          fill="none" stroke="url(#branch-gradient)" stroke-width="6" stroke-linecap="round" opacity="0.6" />
+
+                    <!-- Decorative Small Branches -->
+                    <g class="decorative-branches" opacity="0.5">
+                        <!-- Between card 1 and 2 -->
+                        <path class="small-branch" d="M 610 3500 C 660 3505, 720 3510, 780 3508"
+                              fill="none" stroke="url(#branch-gradient)" stroke-width="3" stroke-linecap="round" />
+                        <!-- Small leaves on this branch -->
+                        <ellipse cx="720" cy="3495" rx="15" ry="20" fill="#22c55e" opacity="0.6" />
+                        <ellipse cx="750" cy="3503" rx="12" ry="18" fill="#16a34a" opacity="0.5" />
+                        <ellipse cx="770" cy="3510" rx="14" ry="19" fill="#22c55e" opacity="0.55" />
+
+                        <!-- Between card 2 and 3 -->
+                        <path class="small-branch" d="M 595 2900 C 540 2905, 470 2910, 400 2908"
+                              fill="none" stroke="url(#branch-gradient)" stroke-width="3" stroke-linecap="round" />
+                        <!-- Small leaves -->
+                        <ellipse cx="500" cy="2895" rx="14" ry="19" fill="#3b82f6" opacity="0.6" />
+                        <ellipse cx="460" cy="2903" rx="13" ry="18" fill="#2563eb" opacity="0.5" />
+                        <ellipse cx="430" cy="2910" rx="15" ry="20" fill="#3b82f6" opacity="0.55" />
+
+                        <!-- Between card 3 and 4 -->
+                        <path class="small-branch" d="M 600 2000 C 650 2005, 710 2010, 770 2008"
+                              fill="none" stroke="url(#branch-gradient)" stroke-width="3" stroke-linecap="round" />
+                        <!-- Small leaves -->
+                        <ellipse cx="680" cy="1995" rx="13" ry="18" fill="#a855f7" opacity="0.6" />
+                        <ellipse cx="720" cy="2003" rx="14" ry="19" fill="#7c3aed" opacity="0.5" />
+                        <ellipse cx="755" cy="2010" rx="12" ry="17" fill="#a855f7" opacity="0.55" />
+
+                        <!-- Between card 4 and 5 -->
+                        <path class="small-branch" d="M 615 1100 C 560 1105, 490 1110, 420 1108"
+                              fill="none" stroke="url(#branch-gradient)" stroke-width="3" stroke-linecap="round" />
+                        <!-- Small leaves -->
+                        <ellipse cx="540" cy="1095" rx="15" ry="20" fill="#6366f1" opacity="0.6" />
+                        <ellipse cx="500" cy="1103" rx="13" ry="18" fill="#4f46e5" opacity="0.5" />
+                        <ellipse cx="460" cy="1110" rx="14" ry="19" fill="#6366f1" opacity="0.55" />
+                    </g>
+
+                    <!-- Realistic Leaf Borders (Behind Cards) -->
+
+                    <!-- Leaf Border 1: Green (Left) -->
+                    <g id="leaf-border-1" class="leaf-border" data-index="0" opacity="0">
+                        <path d="M 250 3700 C 230 3710, 210 3725, 195 3745 C 180 3765, 170 3790, 165 3820 C 162 3840, 162 3860, 165 3880 C 170 3910, 180 3935, 195 3955 C 210 3975, 230 3990, 250 4000 C 270 4010, 295 4015, 320 4015 C 350 4015, 380 4010, 410 4000 C 435 3992, 460 3980, 480 3965 C 495 3952, 508 3937, 518 3920 C 525 3908, 530 3895, 533 3880 C 536 3865, 537 3850, 536 3835 C 535 3815, 530 3795, 520 3778 C 510 3760, 495 3745, 475 3735 C 455 3725, 430 3718, 405 3715 C 380 3712, 355 3712, 330 3715 C 305 3718, 280 3725, 260 3735 C 255 3738, 252 3741, 250 3745"
+                              fill="url(#leaf-gradient-green)" stroke="#22c55e" stroke-width="3" opacity="0.7" filter="url(#glow-green)" />
+                        <!-- Central vein -->
+                        <line x1="250" y1="3710" x2="480" y2="3960" stroke="#16a34a" stroke-width="2.5" opacity="0.5" />
+                        <!-- Side veins -->
+                        <line x1="300" y1="3740" x2="260" y2="3770" stroke="#16a34a" stroke-width="1.2" opacity="0.3" />
+                        <line x1="350" y1="3780" x2="310" y2="3810" stroke="#16a34a" stroke-width="1.2" opacity="0.3" />
+                        <line x1="400" y1="3840" x2="360" y2="3870" stroke="#16a34a" stroke-width="1.2" opacity="0.3" />
+                        <line x1="450" y1="3900" x2="410" y2="3930" stroke="#16a34a" stroke-width="1.2" opacity="0.3" />
+                    </g>
+
+                    <!-- Leaf Border 2: Indigo (Right) -->
+                    <g id="leaf-border-2" class="leaf-border" data-index="1" opacity="0">
+                        <path d="M 950 3100 C 970 3110, 990 3125, 1005 3145 C 1020 3165, 1030 3190, 1035 3220 C 1038 3240, 1038 3260, 1035 3280 C 1030 3310, 1020 3335, 1005 3355 C 990 3375, 970 3390, 950 3400 C 930 3410, 905 3415, 880 3415 C 850 3415, 820 3410, 790 3400 C 765 3392, 740 3380, 720 3365 C 705 3352, 692 3337, 682 3320 C 675 3308, 670 3295, 667 3280 C 664 3265, 663 3250, 664 3235 C 665 3215, 670 3195, 680 3178 C 690 3160, 705 3145, 725 3135 C 745 3125, 770 3118, 795 3115 C 820 3112, 845 3112, 870 3115 C 895 3118, 920 3125, 940 3135 C 945 3138, 948 3141, 950 3145"
+                              fill="url(#leaf-gradient-indigo)" stroke="#6366f1" stroke-width="3" opacity="0.7" filter="url(#glow-indigo)" />
+                        <!-- Central vein -->
+                        <line x1="950" y1="3110" x2="720" y2="3360" stroke="#4f46e5" stroke-width="2.5" opacity="0.5" />
+                        <!-- Side veins -->
+                        <line x1="900" y1="3140" x2="940" y2="3170" stroke="#4f46e5" stroke-width="1.2" opacity="0.3" />
+                        <line x1="850" y1="3180" x2="890" y2="3210" stroke="#4f46e5" stroke-width="1.2" opacity="0.3" />
+                        <line x1="800" y1="3240" x2="840" y2="3270" stroke="#4f46e5" stroke-width="1.2" opacity="0.3" />
+                        <line x1="750" y1="3300" x2="790" y2="3330" stroke="#4f46e5" stroke-width="1.2" opacity="0.3" />
+                    </g>
+
+                    <!-- Leaf Border 3: Blue (Left) -->
+                    <g id="leaf-border-3" class="leaf-border" data-index="2" opacity="0">
+                        <path d="M 250 2500 C 230 2510, 210 2525, 195 2545 C 180 2565, 170 2590, 165 2620 C 162 2640, 162 2660, 165 2680 C 170 2710, 180 2735, 195 2755 C 210 2775, 230 2790, 250 2800 C 270 2810, 295 2815, 320 2815 C 350 2815, 380 2810, 410 2800 C 435 2792, 460 2780, 480 2765 C 495 2752, 508 2737, 518 2720 C 525 2708, 530 2695, 533 2680 C 536 2665, 537 2650, 536 2635 C 535 2615, 530 2595, 520 2578 C 510 2560, 495 2545, 475 2535 C 455 2525, 430 2518, 405 2515 C 380 2512, 355 2512, 330 2515 C 305 2518, 280 2525, 260 2535 C 255 2538, 252 2541, 250 2545"
+                              fill="url(#leaf-gradient-blue)" stroke="#3b82f6" stroke-width="3" opacity="0.7" filter="url(#glow-blue)" />
+                        <!-- Central vein -->
+                        <line x1="250" y1="2510" x2="480" y2="2760" stroke="#2563eb" stroke-width="2.5" opacity="0.5" />
+                        <!-- Side veins -->
+                        <line x1="300" y1="2540" x2="260" y2="2570" stroke="#2563eb" stroke-width="1.2" opacity="0.3" />
+                        <line x1="350" y1="2580" x2="310" y2="2610" stroke="#2563eb" stroke-width="1.2" opacity="0.3" />
+                        <line x1="400" y1="2640" x2="360" y2="2670" stroke="#2563eb" stroke-width="1.2" opacity="0.3" />
+                        <line x1="450" y1="2700" x2="410" y2="2730" stroke="#2563eb" stroke-width="1.2" opacity="0.3" />
+                    </g>
+
+                    <!-- Leaf Border 4: Purple (Right) -->
+                    <g id="leaf-border-4" class="leaf-border" data-index="3" opacity="0">
+                        <path d="M 950 1300 C 970 1310, 990 1325, 1005 1345 C 1020 1365, 1030 1390, 1035 1420 C 1038 1440, 1038 1460, 1035 1480 C 1030 1510, 1020 1535, 1005 1555 C 990 1575, 970 1590, 950 1600 C 930 1610, 905 1615, 880 1615 C 850 1615, 820 1610, 790 1600 C 765 1592, 740 1580, 720 1565 C 705 1552, 692 1537, 682 1520 C 675 1508, 670 1495, 667 1480 C 664 1465, 663 1450, 664 1435 C 665 1415, 670 1395, 680 1378 C 690 1360, 705 1345, 725 1335 C 745 1325, 770 1318, 795 1315 C 820 1312, 845 1312, 870 1315 C 895 1318, 920 1325, 940 1335 C 945 1338, 948 1341, 950 1345"
+                              fill="url(#leaf-gradient-purple)" stroke="#a855f7" stroke-width="3" opacity="0.7" filter="url(#glow-purple)" />
+                        <!-- Central vein -->
+                        <line x1="950" y1="1310" x2="720" y2="1560" stroke="#7c3aed" stroke-width="2.5" opacity="0.5" />
+                        <!-- Side veins -->
+                        <line x1="900" y1="1340" x2="940" y2="1370" stroke="#7c3aed" stroke-width="1.2" opacity="0.3" />
+                        <line x1="850" y1="1380" x2="890" y2="1410" stroke="#7c3aed" stroke-width="1.2" opacity="0.3" />
+                        <line x1="800" y1="1440" x2="840" y2="1470" stroke="#7c3aed" stroke-width="1.2" opacity="0.3" />
+                        <line x1="750" y1="1500" x2="790" y2="1530" stroke="#7c3aed" stroke-width="1.2" opacity="0.3" />
+                    </g>
+
+                    <!-- Leaf Border 5: Cyan (Left - Current Position) -->
+                    <g id="leaf-border-5" class="leaf-border current" data-index="4" opacity="0">
+                        <path d="M 250 700 C 230 710, 210 725, 195 745 C 180 765, 170 790, 165 820 C 162 840, 162 860, 165 880 C 170 910, 180 935, 195 955 C 210 975, 230 990, 250 1000 C 270 1010, 295 1015, 320 1015 C 350 1015, 380 1010, 410 1000 C 435 992, 460 980, 480 965 C 495 952, 508 937, 518 920 C 525 908, 530 895, 533 880 C 536 865, 537 850, 536 835 C 535 815, 530 795, 520 778 C 510 760, 495 745, 475 735 C 455 725, 430 718, 405 715 C 380 712, 355 712, 330 715 C 305 718, 280 725, 260 735 C 255 738, 252 741, 250 745"
+                              fill="url(#leaf-gradient-cyan)" stroke="#06b6d4" stroke-width="4" opacity="0.85" filter="url(#glow-cyan)" />
+                        <!-- Central vein -->
+                        <line x1="250" y1="710" x2="480" y2="960" stroke="#0891b2" stroke-width="3" opacity="0.6" />
+                        <!-- Side veins -->
+                        <line x1="300" y1="740" x2="260" y2="770" stroke="#0891b2" stroke-width="1.5" opacity="0.4" />
+                        <line x1="350" y1="780" x2="310" y2="810" stroke="#0891b2" stroke-width="1.5" opacity="0.4" />
+                        <line x1="400" y1="840" x2="360" y2="870" stroke="#0891b2" stroke-width="1.5" opacity="0.4" />
+                        <line x1="450" y1="900" x2="410" y2="930" stroke="#0891b2" stroke-width="1.5" opacity="0.4" />
+                    </g>
+                </svg>
+
+                <!-- Timeline Container -->
+                <div id="timeline-tree" class="relative z-2" style="min-height: 500vh;">
+                    <!-- Cards will be injected by JS into foreignObject elements -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section id="services" class="py-20 px-6">
+            <div class="container mx-auto max-w-6xl">
+                <h2 class="section-title">What I Offer</h2>
+
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div class="service-card">
+                        <i class="fas fa-robot text-4xl text-cyan-400 mb-4"></i>
+                        <h3 class="text-xl font-bold text-white mb-2">AI Automation</h3>
+                        <p class="text-gray-400">Intelligent workflows and agentic systems that think and act</p>
+                    </div>
+                    <div class="service-card" style="animation-delay: 0.1s;">
+                        <i class="fas fa-cloud text-4xl text-blue-400 mb-4"></i>
+                        <h3 class="text-xl font-bold text-white mb-2">SaaS Development</h3>
+                        <p class="text-gray-400">Scalable cloud-native applications built for growth</p>
+                    </div>
+                    <div class="service-card" style="animation-delay: 0.2s;">
+                        <i class="fas fa-code text-4xl text-purple-400 mb-4"></i>
+                        <h3 class="text-xl font-bold text-white mb-2">Custom Software</h3>
+                        <p class="text-gray-400">Tailored solutions for unique business challenges</p>
+                    </div>
+                    <div class="service-card" style="animation-delay: 0.3s;">
+                        <i class="fas fa-vial text-4xl text-green-400 mb-4"></i>
+                        <h3 class="text-xl font-bold text-white mb-2">Software Testing</h3>
+                        <p class="text-gray-400">Comprehensive QA automation and testing strategies</p>
+                    </div>
+                    <div class="service-card" style="animation-delay: 0.4s;">
+                        <i class="fas fa-globe text-4xl text-indigo-400 mb-4"></i>
+                        <h3 class="text-xl font-bold text-white mb-2">Web Development</h3>
+                        <p class="text-gray-400">Modern, responsive web applications that delight users</p>
+                    </div>
+                    <div class="service-card" style="animation-delay: 0.5s;">
+                        <i class="fas fa-chart-line text-4xl text-orange-400 mb-4"></i>
+                        <h3 class="text-xl font-bold text-white mb-2">Business Analytics</h3>
+                        <p class="text-gray-400">Data-driven insights to power business decisions</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="min-h-screen flex items-center justify-center px-6 py-20">
+            <div class="container mx-auto max-w-4xl">
+                <h2 class="section-title">Let's Build the Future Together</h2>
+                <p class="text-center text-gray-400 mb-12 max-w-2xl mx-auto">
+                    Ready to bring your AI vision to life? Let's connect and discuss how we can work together.
+                </p>
+
+                <div class="glass-card p-8 md:p-12">
+                    <div class="grid md:grid-cols-2 gap-8">
+                        <!-- Contact Info -->
+                        <div>
+                            <h3 class="text-2xl font-bold text-white mb-6">Get In Touch</h3>
+                            <div class="space-y-4">
+                                <a href="mailto:tolumcev@gmail.com" class="contact-item">
+                                    <i class="fas fa-envelope text-cyan-400"></i>
+                                    <span>tolumcev@gmail.com</span>
+                                </a>
+                                <a href="tel:+38978650255" class="contact-item">
+                                    <i class="fas fa-phone text-green-400"></i>
+                                    <span>+(389)78 650-255</span>
+                                </a>
+                                <a href="https://www.linkedin.com/in/timi-olumcev-951770205/" target="_blank" class="contact-item">
+                                    <i class="fab fa-linkedin text-blue-400"></i>
+                                    <span>LinkedIn Profile</span>
+                                </a>
+                                <a href="https://github.com/Timi953" target="_blank" class="contact-item">
+                                    <i class="fab fa-github text-purple-400"></i>
+                                    <span>GitHub Profile</span>
+                                </a>
+                                <div class="contact-item">
+                                    <i class="fas fa-map-marker-alt text-red-400"></i>
+                                    <span>Skopje, North Macedonia</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Quick Links -->
+                        <div>
+                            <h3 class="text-2xl font-bold text-white mb-6">Quick Links</h3>
+                            <div class="space-y-4">
+                                <a href="#skills" class="block text-gray-300 hover:text-cyan-400 transition-colors">
+                                    <i class="fas fa-star mr-2"></i>
+                                    View AI Skills
+                                </a>
+                                <a href="#experience" class="block text-gray-300 hover:text-cyan-400 transition-colors">
+                                    <i class="fas fa-briefcase mr-2"></i>
+                                    See Experience
+                                </a>
+                                <a href="#services" class="block text-gray-300 hover:text-cyan-400 transition-colors">
+                                    <i class="fas fa-cogs mr-2"></i>
+                                    Explore Services
+                                </a>
+                                <a href="./Timi_Olumchev_Resume.pdf" download class="block text-gray-300 hover:text-cyan-400 transition-colors">
+                                    <i class="fas fa-download mr-2"></i>
+                                    Download Resume (PDF)
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- CTA -->
+                    <div class="mt-8 pt-8 border-t border-white/10 text-center">
+                        <p class="text-xl text-white mb-4">
+                            <i class="fas fa-rocket text-cyan-400 mr-2"></i>
+                            Ready to innovate?
+                        </p>
+                        <a href="mailto:tolumcev@gmail.com" class="btn-primary inline-block">
+                            Start a Conversation
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    </div><!-- End scroll-container -->
+
+
+    <!-- Loading Overlay -->
+    <div id="loading-overlay" class="fixed inset-0 z-50 flex items-center justify-center bg-slate-900 transition-opacity duration-500">
+        <div class="text-center">
+            <div class="loading-spinner"></div>
+            <p class="text-white mt-4 text-xl">Loading Portfolio...</p>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script type="module" src="js/main.js"></script>
+
+    <!-- Ripple Pass-Through Handler - Let mouse events reach ripple canvas -->
+    <script>
+        const scrollContainer = document.getElementById('scroll-container');
+        const rippleContainer = document.getElementById('ripple-container');
+
+        // Forward mouse move events to ripple canvas for cursor trails
+        if (scrollContainer && rippleContainer) {
+            scrollContainer.addEventListener('mousemove', (e) => {
+                // Create and dispatch a new mouse event on the ripple container
+                const rippleEvent = new MouseEvent('mousemove', {
+                    bubbles: true,
+                    cancelable: true,
+                    clientX: e.clientX,
+                    clientY: e.clientY,
+                    screenX: e.screenX,
+                    screenY: e.screenY
+                });
+                rippleContainer.dispatchEvent(rippleEvent);
+            }, { passive: true });
+        }
+    </script>
+
+    <!-- Optimized Section Fade Effects (Scroll-triggered only) -->
+    <script>
+        // Cache DOM elements on page load
+        let sections = [];
+        let experienceCards = [];
+        let scrollContainer = null;
+        let viewportCenter = 0;
+        let isScrolling = false;
+        let scrollTimeout = null;
+
+        // Calculate opacity based on distance from viewport center
+        function calculateOpacity(distance) {
+            const maxDistance = viewportCenter * 1.2; // Fade starts at 120% from center
+            const normalizedDistance = Math.min(distance / maxDistance, 1);
+            const opacity = 1 - (normalizedDistance * 0.8);
+            return Math.max(0.2, Math.min(1, opacity));
+        }
+
+        // Calculate scale based on distance from center
+        function calculateScale(distance) {
+            const maxDistance = viewportCenter * 1.2;
+            const normalizedDistance = Math.min(distance / maxDistance, 1);
+            const scale = 1 - (normalizedDistance * 0.05);
+            return Math.max(0.95, Math.min(1, scale));
+        }
+
+        // Update sections (only called during scroll)
+        function updateSections() {
+            // Batch read all positions first (read phase)
+            const measurements = sections.map(section => {
+                const rect = section.getBoundingClientRect();
+                const isExperience = section.id === 'experience';
+                return {
+                    element: section,
+                    rect,
+                    center: rect.top + rect.height / 2,
+                    isExperience
+                };
+            });
+
+            // Batch all writes (write phase - avoids layout thrashing)
+            measurements.forEach(({ element, rect, center, isExperience }) => {
+                if (isExperience) {
+                    // Keep experience section fully visible
+                    element.style.opacity = '1';
+                    element.style.transform = 'scale(1) translateZ(0)';
+                } else {
+                    const distanceFromCenter = Math.abs(center - viewportCenter);
+                    const opacity = calculateOpacity(distanceFromCenter);
+                    const scale = calculateScale(distanceFromCenter);
+
+                    element.style.opacity = opacity;
+                    element.style.transform = `scale(${scale}) translateZ(0)`;
+                }
+            });
+
+            // Update experience cards separately if visible
+            if (experienceCards.length > 0) {
+                const cardMeasurements = experienceCards.map(card => {
+                    const rect = card.getBoundingClientRect();
+                    return {
+                        element: card,
+                        center: rect.top + rect.height / 2
+                    };
+                });
+
+                cardMeasurements.forEach(({ element, center }) => {
+                    const distanceFromCenter = Math.abs(center - viewportCenter);
+                    const opacity = calculateOpacity(distanceFromCenter);
+                    const scale = calculateScale(distanceFromCenter);
+
+                    element.style.opacity = opacity;
+                    element.style.transform = `scale(${scale}) translateZ(0)`;
+                });
+            }
+        }
+
+        // Debounced scroll handler
+        function handleScroll() {
+            if (!isScrolling) {
+                isScrolling = true;
+            }
+
+            // Clear existing timeout
+            if (scrollTimeout) {
+                clearTimeout(scrollTimeout);
+            }
+
+            // Update immediately for smooth feel
+            requestAnimationFrame(updateSections);
+
+            // Stop updating 150ms after scroll ends
+            scrollTimeout = setTimeout(() => {
+                isScrolling = false;
+            }, 150);
+        }
+
+        // Initialize on page load
+        window.addEventListener('load', () => {
+            // Cache DOM queries
+            scrollContainer = document.getElementById('scroll-container');
+            sections = Array.from(document.querySelectorAll('section'));
+            experienceCards = Array.from(document.querySelectorAll('.timeline-card'));
+            viewportCenter = window.innerHeight / 2;
+
+            // Initial update
+            updateSections();
+
+            // Attach passive scroll listener
+            if (scrollContainer) {
+                scrollContainer.addEventListener('scroll', handleScroll, { passive: true });
+            }
+
+            // Update viewport center on resize
+            window.addEventListener('resize', () => {
+                viewportCenter = window.innerHeight / 2;
+                updateSections();
+            }, { passive: true });
+        });
+    </script>
+
+    <!-- Tailwind Configuration -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'inter': ['Inter', 'sans-serif']
+                    },
+                    animation: {
+                        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'float': 'float 6s ease-in-out infinite',
+                        'blink': 'blink 1s step-end infinite'
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-20px)' }
+                        },
+                        blink: {
+                            '0%, 50%': { opacity: '1' },
+                            '51%, 100%': { opacity: '0' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Version Toggle Button -->
+    <button id="version-toggle" class="fixed bottom-6 right-6 z-50 px-4 py-3 bg-cyan-500/90 hover:bg-cyan-600/90 text-white rounded-full shadow-lg backdrop-blur-sm transition-all duration-300 flex items-center gap-2 group" onclick="switchToMobile()">
+        <i class="fas fa-mobile-alt"></i>
+        <span class="hidden sm:inline">Mobile Version</span>
+    </button>
+
+    <script>
+        function switchToMobile() {
+            localStorage.setItem('resume-version-preference', 'mobile');
+            window.location.href = '/resume-mobile/';
+        }
+    </script>
+</body>
+</html>
