@@ -87,7 +87,7 @@
          * Priority: localStorage preference > touch + screen size > userAgent > default
          */
         (function() {
-            const DEBUG = false; // Set to true for debugging
+            const DEBUG = true; // Set to true for debugging
 
             function log(message, data = null) {
                 if (DEBUG) {
@@ -144,15 +144,18 @@
              * Get the appropriate version URL
              */
             function getVersionUrl() {
+                // Get base path (handles both local and GitHub Pages)
+                const basePath = window.location.pathname.replace(/\/+$/, '').replace(/index\.html$/, '');
+
                 // 1. HIGHEST PRIORITY: Check localStorage for user preference
                 const preference = localStorage.getItem('resume-version-preference');
 
                 if (preference === 'mobile') {
                     log('Using localStorage preference: mobile');
-                    return '/resume-mobile/';
+                    return basePath + '/resume-mobile/';
                 } else if (preference === 'desktop') {
                     log('Using localStorage preference: desktop');
-                    return '/resume/';
+                    return basePath + '/resume/';
                 }
 
                 // 2. No preference set - detect device
@@ -162,10 +165,10 @@
                 // 3. Return appropriate URL
                 if (isMobile) {
                     log('Redirecting to mobile version');
-                    return '/resume-mobile/';
+                    return basePath + '/resume-mobile/';
                 } else {
                     log('Redirecting to desktop version');
-                    return '/resume/';
+                    return basePath + '/resume/';
                 }
             }
 
