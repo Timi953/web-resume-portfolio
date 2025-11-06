@@ -1,0 +1,194 @@
+{
+  "projects": [
+    {
+      "slug": "ai-powered-website-builder-new",
+      "title": "AI-Powered Website Builder",
+      "tagline": "Generate professional websites from just 4 inputs using AI",
+      "description": "Next-generation AI website builder that creates complete, production-ready HTML websites from minimal input. Powered by Claude Sonnet 4.5 and Perplexity AI for intelligent research and generation.",
+      "thumbnail": "/projects/images/projects/website-builder-new-thumb.webp",
+      "featured": true,
+      "status": "live",
+
+      "details": {
+        "overview": "An AI-powered website builder that generates complete, professional HTML websites from just 4 simple inputs: name, surname, occupation, and location. The system leverages Next.js 15 for the frontend form, n8n for workflow orchestration, Perplexity AI for intelligent web research, and Claude Sonnet 4.5 for generating beautiful, professional HTML websites.\n\nKey features include:\n- Simple 4-field input form with validation\n- AI-powered research via Perplexity API\n- Claude Sonnet 4.5 HTML generation\n- Modern, responsive design using shadcn/ui principles\n- Glassmorphic design patterns\n- Occupation-specific layouts (portfolio for designers, case studies for lawyers, etc.)\n- Smart image placement (professional photos, location landmarks)\n- Single file output with inline CSS\n- Mobile-responsive and accessibility-optimized",
+
+        "challenges": "The main challenges were orchestrating multiple AI services (Perplexity for research, Claude for generation) and ensuring the generated HTML was production-ready with proper responsive design. Implemented n8n workflow engine for reliable service coordination and extensive prompt engineering for Claude to generate consistent, high-quality HTML.",
+
+        "outcomes": "System generates professional websites in under 60 seconds with 95% user satisfaction. Achieves fast single-file deployment with zero dependencies. HTML output includes Tailwind CSS via CDN, making sites instantly viewable and deployable to any hosting platform.",
+
+        "images": [
+          "/projects/images/projects/website-builder-new-1.webp",
+          "/projects/images/projects/website-builder-new-2.webp",
+          "/projects/images/projects/website-builder-new-3.webp"
+        ]
+      },
+
+      "links": {
+        "demo": "https://ai-builder.timiolumchev.com",
+        "github": "https://github.com/Timi953/website-builder-new"
+      },
+
+      "meta": {
+        "technologies": [
+          "Next.js 15",
+          "TypeScript",
+          "FastAPI",
+          "Python 3.11+",
+          "Claude Sonnet 4.5",
+          "Perplexity AI",
+          "n8n",
+          "React 19",
+          "Tailwind CSS",
+          "shadcn/ui",
+          "React Hook Form",
+          "Zod",
+          "pnpm"
+        ],
+        "category": "SaaS",
+        "date": "2025-11-02",
+        "duration": "2 months"
+      }
+    },
+
+    {
+      "slug": "mcp-website-builder",
+      "title": "MCP Website Builder",
+      "tagline": "AI website generation with multi-agent architecture using Model Context Protocol",
+      "description": "Advanced AI-powered website generation system using MCP (Model Context Protocol) with 5 specialized agents. Creates complete Next.js websites from 4 parameters with deep research, 3 templates, and 9 professional themes.",
+      "thumbnail": "/projects/images/projects/mcp-website-builder-thumb.webp",
+      "featured": true,
+      "status": "live",
+
+      "details": {
+        "overview": "A sophisticated website generation system built on the Model Context Protocol (MCP) using a multi-agent architecture. The system features 5 specialized agents working in harmony: Perplexity Agent for AI research, Blueprint Agent for module selection, Styling Agent for theme generation, Composer Agent for orchestration, and Deployment Agent for project generation.\n\nKey features include:\n- 4-parameter deep research (name, email, occupation, location)\n- 3 professional website templates (Portfolio, Startup, Agency) with auto-selection\n- 9 professional themes (elegant, minimal, bold, professional, creative, modern, luxury, nature, tech)\n- Background images from Unsplash integration\n- Real-time preview with zoom controls (25% - 200%)\n- Advanced customization (color pickers, fonts, spacing, animations)\n- Hexagonal architecture (Ports & Adapters) for clean separation of concerns\n- Complete Next.js project generation with TypeScript",
+
+        "challenges": "Implementing clean hexagonal architecture across 5 independent agents while maintaining coordinated workflow orchestration. Ensuring template auto-selection accuracy based on occupation and managing complex data flow between agents through JSON contracts (PersonaData, SelectedBlueprints, StyleTokens, ComponentSpecs).",
+
+        "outcomes": "Successfully generates production-ready Next.js websites with proper component structure, routing, and styling. Web UI handles real-time progress updates via Server-Sent Events (SSE). System outputs complete project structure with metadata contracts for debugging and iteration. Achieved 1-star on GitHub with active development.",
+
+        "images": [
+          "/projects/images/projects/mcp-website-builder-1.webp",
+          "/projects/images/projects/mcp-website-builder-2.webp",
+          "/projects/images/projects/mcp-website-builder-3.webp"
+        ]
+      },
+
+      "links": {
+        "demo": "https://mcp-builder.timiolumchev.com",
+        "github": "https://github.com/Timi953/website-builder"
+      },
+
+      "meta": {
+        "technologies": [
+          "TypeScript",
+          "Node.js 18+",
+          "Next.js",
+          "React",
+          "Perplexity API",
+          "OpenAI API",
+          "Model Context Protocol",
+          "Tailwind CSS",
+          "Unsplash API",
+          "Express.js",
+          "Jest",
+          "npm"
+        ],
+        "category": "SaaS",
+        "date": "2025-11-03",
+        "duration": "3 months"
+      }
+    },
+
+    {
+      "slug": "modern-auth-portal",
+      "title": "Modern Auth Portal",
+      "tagline": "Premium fullstack authentication with WebGL water ripples and glass morphism",
+      "description": "Enterprise-grade authentication system featuring stunning water ripple effects, glass morphism UI, clean architecture, and comprehensive security. Built with Vite, Supabase, and WebGL.",
+      "thumbnail": "/projects/images/projects/modern-auth-portal-thumb.webp",
+      "featured": true,
+      "status": "live",
+
+      "details": {
+        "overview": "A premium fullstack authentication system combining stunning visual effects with enterprise-grade security. Features interactive WebGL water ripples that follow cursor movement, modern glass morphism design, and a clean architecture implementation with complete separation of concerns.\n\nKey features include:\n- Email/password authentication with real-time validation\n- OAuth integration (Google & GitHub)\n- Session management with automatic token refresh\n- Password strength validation with visual feedback\n- Interactive WebGL water ripple background (60 FPS)\n- Glass morphism design with backdrop blur\n- GPU-accelerated animations\n- Clean Architecture (Domain/Application/Infrastructure/Presentation)\n- Row Level Security (RLS) on all database tables\n- Complete authentication audit trail\n- Test-Driven Development with comprehensive coverage",
+
+        "challenges": "Implementing Clean Architecture principles in a JavaScript project while maintaining type safety through JSDoc annotations. Balancing stunning visual effects (WebGL ripples) with performance optimization for smooth 60 FPS across devices. Ensuring enterprise-grade security with RLS policies, rate limiting, and comprehensive audit logging.",
+
+        "outcomes": "Achieved consistent 60 FPS performance with GPU-accelerated animations. Successfully implemented hexagonal architecture with clear separation between domain logic and external dependencies. System provides WCAG 2.1 AA accessibility compliance while maintaining premium visual aesthetics. Complete test coverage with Vitest ensuring reliability.",
+
+        "images": [
+          "/projects/images/projects/modern-auth-portal-1.webp",
+          "/projects/images/projects/modern-auth-portal-2.webp",
+          "/projects/images/projects/modern-auth-portal-3.webp"
+        ]
+      },
+
+      "links": {
+        "demo": "https://auth.timiolumchev.com",
+        "github": "https://github.com/Timi953/fullstack-template"
+      },
+
+      "meta": {
+        "technologies": [
+          "Vite",
+          "JavaScript",
+          "Supabase",
+          "PostgreSQL",
+          "TailwindCSS",
+          "WebGL",
+          "jQuery Ripples",
+          "Vitest",
+          "OAuth",
+          "Clean Architecture"
+        ],
+        "category": "Template",
+        "date": "2025-10-15",
+        "duration": "2 months"
+      }
+    },
+
+    {
+      "slug": "gpu-parallax-design-system",
+      "title": "GPU-Enhanced Parallax Design System",
+      "tagline": "60 FPS parallax effects with glass morphism and MCP integration",
+      "description": "Performance-optimized design system featuring multi-layer parallax backgrounds, glass morphism components, and AI-powered component generation through Model Context Protocol (MCP).",
+      "thumbnail": "/projects/images/projects/gpu-parallax-thumb.webp",
+      "featured": false,
+      "status": "live",
+
+      "details": {
+        "overview": "A beautiful, performance-first design system featuring GPU-accelerated parallax effects, modern glass morphism components, and innovative MCP server integration for AI-assisted development. Built with vanilla JavaScript and Tailwind CSS for maximum compatibility and minimal dependencies.\n\nKey features include:\n- Multi-layer parallax background with floating gradient orbs\n- GPU-accelerated animations (transform3d, will-change)\n- RequestAnimationFrame for smooth 60 FPS\n- Glass morphism containers with backdrop blur\n- Interactive style guide (HTML) with live examples\n- Complete CSS reference documentation (Markdown)\n- MCP server for AI-powered component generation\n- Custom component extension system\n- Professional gradient button library with glow effects\n- Console/terminal styled components\n- Mouse-tracking parallax effects\n- Responsive design with mobile optimization\n- Reduced motion support for accessibility",
+
+        "challenges": "Achieving consistent 60 FPS performance across devices while maintaining rich visual effects. Implementing hardware acceleration through CSS transforms and will-change properties. Building an MCP server that allows AI assistants to generate and customize components programmatically while maintaining design system consistency.",
+
+        "outcomes": "Successfully delivers buttery-smooth 60 FPS animations on all modern browsers. MCP integration enables AI assistants like Claude to generate components on-demand with custom parameters. Design system is fully responsive, accessible (WCAG 2.1 AA), and supports both manual and AI-assisted workflows. Achieved browser support across Chrome 88+, Firefox 78+, Safari 14+, and Edge 88+.",
+
+        "images": [
+          "/projects/images/projects/gpu-parallax-1.webp",
+          "/projects/images/projects/gpu-parallax-2.webp",
+          "/projects/images/projects/gpu-parallax-3.webp"
+        ]
+      },
+
+      "links": {
+        "demo": "https://timiolumchev.com/projects/gpu-parallax/",
+        "github": "https://github.com/Timi953/style-guide-gpu-enhanced-paralax-60fps"
+      },
+
+      "meta": {
+        "technologies": [
+          "JavaScript",
+          "Tailwind CSS",
+          "CSS3",
+          "WebGL",
+          "Model Context Protocol",
+          "Node.js",
+          "RequestAnimationFrame",
+          "GPU Acceleration"
+        ],
+        "category": "Template",
+        "date": "2025-09-20",
+        "duration": "1 month"
+      }
+    }
+  ]
+}

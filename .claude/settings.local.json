@@ -5,9 +5,27 @@
       "Bash(curl:*)",
       "Bash(rm:*)",
       "Bash(git commit:*)",
-      "Bash(git push:*)"
+      "Bash(git push:*)",
+      "Bash(dir:*)",
+      "Bash(mkdir:*)",
+      "Bash(npm install)",
+      "Bash(npm install:*)",
+      "Bash(npx shadcn@latest add:*)",
+      "Bash(npm uninstall:*)",
+      "Bash(npm run build:*)",
+      "Bash(cat:*)",
+      "Bash(test:*)",
+      "Bash(npm run dev:*)",
+      "Bash(python -m http.server:*)",
+      "Bash(git clone:*)",
+      "Bash(CNAME)",
+      "Bash(git config:*)",
+      "Bash(find:*)",
+      "Bash(git pull:*)",
+      "Bash(git stash:*)"
     ],
     "deny": [],
     "ask": []
-  }
+  },
+  "enableAllProjectMcpServers": true
 }

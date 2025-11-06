@@ -1,0 +1,1110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Style Guide - Modern Parallax Design System</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            /* Color Palette */
+            --gradient-purple: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --gradient-pink: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --gradient-blue: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            --gradient-indigo-purple: linear-gradient(to right, #667eea, #764ba2);
+            --gradient-text: linear-gradient(to right, #818cf8, #ec4899);
+
+            /* Semantic Colors */
+            --color-success: #34d399;
+            --color-error: #ef4444;
+            --color-warning: #fbbf24;
+            --color-info: #60a5fa;
+
+            /* Glass Morphism */
+            --glass-bg: rgba(15, 23, 42, 0.8);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --glass-hover-border: rgba(99, 102, 241, 0.3);
+
+            /* Timing Functions */
+            --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+            --ease-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        }
+
+        body {
+            overflow-x: hidden;
+        }
+
+        /* ========================================
+           PARALLAX BACKGROUND SYSTEM
+        ======================================== */
+        .parallax-layer {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            will-change: transform;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .floating-shape {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(120px);
+            opacity: 0.5;
+            animation: float 20s ease-in-out infinite;
+        }
+
+        /* Ultra-smooth radial gradients with multiple color stops */
+        .shape-1 {
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(
+                circle at center,
+                rgba(102, 126, 234, 0.8) 0%,
+                rgba(102, 126, 234, 0.7) 15%,
+                rgba(110, 118, 214, 0.6) 30%,
+                rgba(118, 110, 194, 0.5) 45%,
+                rgba(118, 75, 162, 0.3) 60%,
+                rgba(118, 75, 162, 0.15) 75%,
+                rgba(118, 75, 162, 0) 100%
+            );
+            top: 10%;
+            left: -5%;
+            animation-delay: 0s;
+        }
+
+        .shape-2 {
+            width: 450px;
+            height: 450px;
+            background: radial-gradient(
+                circle at center,
+                rgba(240, 147, 251, 0.8) 0%,
+                rgba(240, 147, 251, 0.7) 15%,
+                rgba(245, 117, 221, 0.6) 30%,
+                rgba(245, 97, 191, 0.5) 45%,
+                rgba(245, 87, 138, 0.3) 60%,
+                rgba(245, 87, 108, 0.15) 75%,
+                rgba(245, 87, 108, 0) 100%
+            );
+            top: 50%;
+            right: -5%;
+            animation-delay: -7s;
+        }
+
+        .shape-3 {
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(
+                circle at center,
+                rgba(79, 172, 254, 0.8) 0%,
+                rgba(79, 172, 254, 0.7) 15%,
+                rgba(63, 192, 254, 0.6) 30%,
+                rgba(47, 212, 254, 0.5) 45%,
+                rgba(31, 232, 254, 0.3) 60%,
+                rgba(0, 242, 254, 0.15) 75%,
+                rgba(0, 242, 254, 0) 100%
+            );
+            bottom: 10%;
+            left: 30%;
+            animation-delay: -14s;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translate(0, 0) scale(1);
+            }
+            33% {
+                transform: translate(30px, -30px) scale(1.1);
+            }
+            66% {
+                transform: translate(-20px, 20px) scale(0.9);
+            }
+        }
+
+        .grid-pattern {
+            background-image:
+                linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+            background-size: 50px 50px;
+            animation: gridMove 20s linear infinite;
+        }
+
+        @keyframes gridMove {
+            0% {
+                background-position: 0 0;
+            }
+            100% {
+                background-position: 50px 50px;
+            }
+        }
+
+        /* ========================================
+           BUTTON STYLES
+        ======================================== */
+        .button-glow {
+            box-shadow: 0 0 20px rgba(99, 102, 241, 0.5);
+            transition: all 0.3s var(--ease-smooth);
+        }
+
+        .button-glow:hover {
+            box-shadow: 0 0 30px rgba(99, 102, 241, 0.8), 0 0 60px rgba(99, 102, 241, 0.4);
+            transform: translateY(-2px) scale(1.05);
+        }
+
+        .button-glow:active {
+            transform: translateY(0) scale(0.98);
+        }
+
+        .button-secondary {
+            transition: all 0.3s var(--ease-smooth);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .button-secondary:hover {
+            border-color: rgba(99, 102, 241, 0.6);
+            background: rgba(99, 102, 241, 0.1);
+            transform: translateY(-2px);
+        }
+
+        /* ========================================
+           GLASS MORPHISM CONTAINERS
+        ======================================== */
+        .glass-container {
+            backdrop-filter: blur(10px);
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+            transition: all 0.3s ease;
+        }
+
+        .glass-container:hover {
+            border-color: var(--glass-hover-border);
+        }
+
+        /* ========================================
+           CONSOLE/TERMINAL STYLES
+        ======================================== */
+        .console-container {
+            backdrop-filter: blur(10px);
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+        }
+
+        .console-header {
+            border-bottom: 1px solid rgb(51, 65, 85);
+        }
+
+        .console-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .console-line {
+            animation: fadeIn 0.3s ease-in;
+        }
+
+        /* ========================================
+           ANIMATIONS
+        ======================================== */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateX(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes spinReverse {
+            0% { transform: rotate(360deg); }
+            100% { transform: rotate(0deg); }
+        }
+
+        @keyframes pulseRing {
+            0% {
+                transform: scale(0.95);
+                opacity: 1;
+            }
+            50% {
+                transform: scale(1.05);
+                opacity: 0.8;
+            }
+            100% {
+                transform: scale(0.95);
+                opacity: 1;
+            }
+        }
+
+        /* Premium SVG Spinner Styles */
+        .premium-spinner {
+            position: relative;
+            width: 80px;
+            height: 80px;
+        }
+
+        .premium-spinner svg {
+            width: 100%;
+            height: 100%;
+            filter: drop-shadow(0 0 12px rgba(99, 102, 241, 0.5));
+        }
+
+        .spinner-ring-outer {
+            animation: spin 3s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+            transform-origin: center;
+        }
+
+        .spinner-ring-middle {
+            animation: spinReverse 2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+            transform-origin: center;
+        }
+
+        .spinner-ring-inner {
+            animation: spin 1.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+            transform-origin: center;
+        }
+
+        .spinner-dots {
+            animation: pulseRing 1.5s ease-in-out infinite;
+        }
+
+        @keyframes gradientShift {
+            0%, 100% {
+                stop-color: #667eea;
+            }
+            33% {
+                stop-color: #f093fb;
+            }
+            66% {
+                stop-color: #4facfe;
+            }
+        }
+
+        .gradient-animated stop:nth-child(1) {
+            animation: gradientShift 3s ease-in-out infinite;
+        }
+
+        .gradient-animated stop:nth-child(2) {
+            animation: gradientShift 3s ease-in-out infinite 1s;
+        }
+
+        @keyframes shimmer {
+            0% {
+                background-position: -1000px 0;
+            }
+            100% {
+                background-position: 1000px 0;
+            }
+        }
+
+        .spinner {
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top: 3px solid white;
+            width: 20px;
+            height: 20px;
+            animation: spin 0.8s linear infinite;
+        }
+
+        .pulse-ring {
+            animation: pulseRing 1.5s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+
+        /* Loading Button Progress Animation */
+        .button-loading {
+            transition: all 0.3s ease;
+        }
+
+        .loading-text {
+            position: relative;
+            z-index: 2;
+            animation: pulseText 2s ease-in-out infinite;
+        }
+
+        @keyframes pulseText {
+            0%, 100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.7;
+            }
+        }
+
+        .loading-progress-ring {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .progress-border {
+            animation: progressSweep 2.5s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+        }
+
+        @keyframes progressSweep {
+            0% {
+                stroke-dashoffset: 780;
+            }
+            50% {
+                stroke-dashoffset: 0;
+            }
+            100% {
+                stroke-dashoffset: -780;
+            }
+        }
+
+        .progress-dot-1, .progress-dot-2, .progress-dot-3 {
+            opacity: 0.9;
+        }
+
+        .fade-in-up {
+            animation: fadeInUp 0.8s var(--ease-smooth);
+        }
+
+        .shimmer-effect {
+            background: linear-gradient(
+                to right,
+                rgba(255, 255, 255, 0.0) 0%,
+                rgba(255, 255, 255, 0.1) 50%,
+                rgba(255, 255, 255, 0.0) 100%
+            );
+            background-size: 1000px 100%;
+            animation: shimmer 2s infinite;
+        }
+
+        /* ========================================
+           CARDS & COMPONENTS
+        ======================================== */
+        .card-hover {
+            transition: all 0.3s var(--ease-smooth);
+        }
+
+        .card-hover:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+        }
+
+        .gradient-text {
+            background: var(--gradient-text);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* ========================================
+           PERFORMANCE OPTIMIZATIONS
+        ======================================== */
+        .gpu-accelerated {
+            transform: translateZ(0);
+            backface-visibility: hidden;
+            perspective: 1000px;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* ========================================
+           CODE BLOCKS
+        ======================================== */
+        .code-block {
+            background: rgb(15, 23, 42);
+            border: 1px solid rgb(51, 65, 85);
+            border-radius: 12px;
+            padding: 1.5rem;
+            overflow-x: auto;
+        }
+
+        .code-block code {
+            font-family: 'Monaco', 'Menlo', 'Ubuntu Mono', monospace;
+            font-size: 0.875rem;
+            line-height: 1.7;
+            color: rgb(226, 232, 240);
+        }
+
+        /* Section styling */
+        .section-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .component-preview {
+            background: rgba(30, 41, 59, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 2rem;
+            margin: 1rem 0;
+        }
+    </style>
+</head>
+<body class="bg-slate-900 min-h-screen text-white">
+    <!-- Parallax Background -->
+    <div class="parallax-layer gpu-accelerated" id="parallaxLayer">
+        <div class="floating-shape shape-1 gpu-accelerated"></div>
+        <div class="floating-shape shape-2 gpu-accelerated"></div>
+        <div class="floating-shape shape-3 gpu-accelerated"></div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="relative z-10 max-w-7xl mx-auto px-6 py-16">
+        <!-- Header -->
+        <header class="text-center mb-16 fade-in-up">
+            <h1 class="text-6xl md:text-7xl font-bold mb-4">
+                Interactive <span class="gradient-text">Style Guide</span>
+            </h1>
+            <p class="text-xl text-slate-400 max-w-2xl mx-auto">
+                A comprehensive design system featuring modern parallax effects, glass morphism, and performance-optimized animations
+            </p>
+        </header>
+
+        <!-- Table of Contents -->
+        <nav class="section-card mb-12">
+            <h2 class="text-2xl font-bold mb-4">Table of Contents</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <a href="#colors" class="text-indigo-400 hover:text-indigo-300 transition-colors">1. Color Palette</a>
+                <a href="#buttons" class="text-indigo-400 hover:text-indigo-300 transition-colors">2. Buttons</a>
+                <a href="#glass" class="text-indigo-400 hover:text-indigo-300 transition-colors">3. Glass Morphism</a>
+                <a href="#console" class="text-indigo-400 hover:text-indigo-300 transition-colors">4. Console/Terminal</a>
+                <a href="#animations" class="text-indigo-400 hover:text-indigo-300 transition-colors">5. Animations</a>
+                <a href="#typography" class="text-indigo-400 hover:text-indigo-300 transition-colors">6. Typography</a>
+                <a href="#cards" class="text-indigo-400 hover:text-indigo-300 transition-colors">7. Cards</a>
+                <a href="#parallax" class="text-indigo-400 hover:text-indigo-300 transition-colors">8. Parallax Effects</a>
+                <a href="#performance" class="text-indigo-400 hover:text-indigo-300 transition-colors">9. Performance</a>
+            </div>
+        </nav>
+
+        <!-- Color Palette -->
+        <section id="colors" class="section-card">
+            <h2 class="text-4xl font-bold mb-6">Color Palette</h2>
+
+            <h3 class="text-2xl font-semibold mb-4 text-indigo-400">Gradients</h3>
+            <div class="grid md:grid-cols-2 gap-6 mb-8">
+                <div>
+                    <div class="h-32 rounded-xl mb-3" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);"></div>
+                    <p class="text-sm text-slate-400 font-mono">Purple Gradient</p>
+                    <code class="text-xs text-slate-500">linear-gradient(135deg, #667eea 0%, #764ba2 100%)</code>
+                </div>
+                <div>
+                    <div class="h-32 rounded-xl mb-3" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);"></div>
+                    <p class="text-sm text-slate-400 font-mono">Pink Gradient</p>
+                    <code class="text-xs text-slate-500">linear-gradient(135deg, #f093fb 0%, #f5576c 100%)</code>
+                </div>
+                <div>
+                    <div class="h-32 rounded-xl mb-3" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);"></div>
+                    <p class="text-sm text-slate-400 font-mono">Blue Gradient</p>
+                    <code class="text-xs text-slate-500">linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)</code>
+                </div>
+                <div>
+                    <div class="h-32 rounded-xl mb-3" style="background: linear-gradient(to right, #818cf8, #ec4899);"></div>
+                    <p class="text-sm text-slate-400 font-mono">Text Gradient</p>
+                    <code class="text-xs text-slate-500">linear-gradient(to right, #818cf8, #ec4899)</code>
+                </div>
+            </div>
+
+            <h3 class="text-2xl font-semibold mb-4 text-indigo-400">Semantic Colors</h3>
+            <div class="grid md:grid-cols-4 gap-4">
+                <div>
+                    <div class="h-20 rounded-xl mb-3 bg-green-400"></div>
+                    <p class="text-sm text-slate-400">Success</p>
+                    <code class="text-xs text-slate-500">#34d399</code>
+                </div>
+                <div>
+                    <div class="h-20 rounded-xl mb-3 bg-red-500"></div>
+                    <p class="text-sm text-slate-400">Error</p>
+                    <code class="text-xs text-slate-500">#ef4444</code>
+                </div>
+                <div>
+                    <div class="h-20 rounded-xl mb-3 bg-yellow-400"></div>
+                    <p class="text-sm text-slate-400">Warning</p>
+                    <code class="text-xs text-slate-500">#fbbf24</code>
+                </div>
+                <div>
+                    <div class="h-20 rounded-xl mb-3 bg-blue-400"></div>
+                    <p class="text-sm text-slate-400">Info</p>
+                    <code class="text-xs text-slate-500">#60a5fa</code>
+                </div>
+            </div>
+        </section>
+
+        <!-- Buttons -->
+        <section id="buttons" class="section-card">
+            <h2 class="text-4xl font-bold mb-6">Button Styles</h2>
+
+            <div class="component-preview">
+                <h3 class="text-xl font-semibold mb-4">Primary Button with Glow</h3>
+                <button class="button-glow gpu-accelerated px-8 py-4 bg-gradient-to-r from-indigo-600 to-purple-600 text-white text-lg font-semibold rounded-xl">
+                    Hover Me
+                </button>
+                <div class="code-block mt-4">
+                    <code>&lt;button class="button-glow gpu-accelerated px-8 py-4 bg-gradient-to-r from-indigo-600 to-purple-600 text-white text-lg font-semibold rounded-xl"&gt;
+    Hover Me
+&lt;/button&gt;</code>
+                </div>
+            </div>
+
+            <div class="component-preview">
+                <h3 class="text-xl font-semibold mb-4">Secondary Button</h3>
+                <button class="button-secondary gpu-accelerated px-8 py-4 bg-transparent text-white text-lg font-semibold rounded-xl">
+                    Secondary Action
+                </button>
+                <div class="code-block mt-4">
+                    <code>&lt;button class="button-secondary gpu-accelerated px-8 py-4 bg-transparent text-white text-lg font-semibold rounded-xl"&gt;
+    Secondary Action
+&lt;/button&gt;</code>
+                </div>
+            </div>
+
+            <div class="component-preview">
+                <h3 class="text-xl font-semibold mb-4">Loading Button with Progress Arc Animation</h3>
+                <button class="button-loading gpu-accelerated px-8 py-4 bg-gradient-to-r from-indigo-600 to-purple-600 text-white text-lg font-semibold rounded-xl relative overflow-hidden" disabled>
+                    <span class="loading-text">Processing...</span>
+                    <svg class="loading-progress-ring" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+                        <defs>
+                            <linearGradient id="progressGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                <stop offset="0%" style="stop-color:#4facfe;stop-opacity:1" />
+                                <stop offset="50%" style="stop-color:#f093fb;stop-opacity:1" />
+                                <stop offset="100%" style="stop-color:#fbbf24;stop-opacity:1" />
+                            </linearGradient>
+                            <filter id="progressGlow">
+                                <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+                                <feMerge>
+                                    <feMergeNode in="coloredBlur"/>
+                                    <feMergeNode in="SourceGraphic"/>
+                                </feMerge>
+                            </filter>
+                        </defs>
+
+                        <!-- Background ring -->
+                        <rect x="2" y="2" width="196" height="196" rx="12" ry="12" fill="none"
+                              stroke="rgba(255,255,255,0.1)" stroke-width="3"/>
+
+                        <!-- Animated progress ring -->
+                        <rect class="progress-border" x="2" y="2" width="196" height="196" rx="12" ry="12"
+                              fill="none" stroke="url(#progressGradient)" stroke-width="4"
+                              stroke-dasharray="780" stroke-dashoffset="780"
+                              stroke-linecap="round" filter="url(#progressGlow)"/>
+
+                        <!-- Animated dots following the path -->
+                        <circle class="progress-dot-1" r="4" fill="white" filter="url(#progressGlow)">
+                            <animateMotion dur="3s" repeatCount="indefinite">
+                                <mpath href="#borderPath"/>
+                            </animateMotion>
+                        </circle>
+                        <circle class="progress-dot-2" r="3" fill="#4facfe" filter="url(#progressGlow)">
+                            <animateMotion dur="3s" repeatCount="indefinite" begin="1s">
+                                <mpath href="#borderPath"/>
+                            </animateMotion>
+                        </circle>
+                        <circle class="progress-dot-3" r="3" fill="#f093fb" filter="url(#progressGlow)">
+                            <animateMotion dur="3s" repeatCount="indefinite" begin="2s">
+                                <mpath href="#borderPath"/>
+                            </animateMotion>
+                        </circle>
+
+                        <!-- Hidden path for dots to follow -->
+                        <path id="borderPath" d="M 14,2 H 186 A 12,12 0 0 1 198,14 V 186 A 12,12 0 0 1 186,198 H 14 A 12,12 0 0 1 2,186 V 14 A 12,12 0 0 1 14,2 Z"
+                              fill="none" stroke="none"/>
+                    </svg>
+                </button>
+                <div class="code-block mt-4">
+                    <code>&lt;button class="button-loading gpu-accelerated px-8 py-4 bg-gradient-to-r from-indigo-600 to-purple-600 text-white text-lg font-semibold rounded-xl relative overflow-hidden" disabled&gt;
+    &lt;span class="loading-text"&gt;Processing...&lt;/span&gt;
+    &lt;svg class="loading-progress-ring" viewBox="0 0 200 200"&gt;
+        &lt;!-- Progress arc animation --&gt;
+    &lt;/svg&gt;
+&lt;/button&gt;</code>
+                </div>
+            </div>
+        </section>
+
+        <!-- Glass Morphism -->
+        <section id="glass" class="section-card">
+            <h2 class="text-4xl font-bold mb-6">Glass Morphism</h2>
+
+            <div class="component-preview">
+                <div class="glass-container rounded-2xl p-6 max-w-md">
+                    <h3 class="text-xl font-semibold mb-3">Glass Container</h3>
+                    <p class="text-slate-400">
+                        This container uses backdrop-filter blur, semi-transparent backgrounds, and subtle borders for a modern glass effect.
+                    </p>
+                </div>
+                <div class="code-block mt-4">
+                    <code>.glass-container {
+    backdrop-filter: blur(10px);
+    background: rgba(15, 23, 42, 0.8);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    transition: all 0.3s ease;
+}
+
+.glass-container:hover {
+    border-color: rgba(99, 102, 241, 0.3);
+}</code>
+                </div>
+            </div>
+        </section>
+
+        <!-- Console/Terminal -->
+        <section id="console" class="section-card">
+            <h2 class="text-4xl font-bold mb-6">Console/Terminal Style</h2>
+
+            <div class="component-preview">
+                <div class="console-container rounded-2xl p-6 max-w-3xl">
+                    <div class="console-header flex items-center justify-between pb-3 mb-4">
+                        <div class="flex items-center space-x-2">
+                            <div class="console-dot bg-red-500"></div>
+                            <div class="console-dot bg-yellow-500"></div>
+                            <div class="console-dot bg-green-500"></div>
+                        </div>
+                        <span class="text-slate-400 text-sm font-mono">Terminal</span>
+                    </div>
+                    <div class="space-y-2 font-mono text-sm">
+                        <div class="console-line flex space-x-3">
+                            <span class="text-slate-600">[10:24:15]</span>
+                            <span class="text-blue-400 font-semibold">[INFO]</span>
+                            <span class="text-slate-300">Application started successfully</span>
+                        </div>
+                        <div class="console-line flex space-x-3">
+                            <span class="text-slate-600">[10:24:16]</span>
+                            <span class="text-green-400 font-semibold">[SUCCESS]</span>
+                            <span class="text-slate-300">Connected to database</span>
+                        </div>
+                        <div class="console-line flex space-x-3">
+                            <span class="text-slate-600">[10:24:17]</span>
+                            <span class="text-yellow-400 font-semibold">[WARNING]</span>
+                            <span class="text-slate-300">Cache hit rate below 80%</span>
+                        </div>
+                        <div class="console-line flex space-x-3">
+                            <span class="text-slate-600">[10:24:18]</span>
+                            <span class="text-red-400 font-semibold">[ERROR]</span>
+                            <span class="text-slate-300">Failed to fetch remote data</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Animations -->
+        <section id="animations" class="section-card">
+            <h2 class="text-4xl font-bold mb-6">Animations</h2>
+
+            <!-- Featured Premium Spinner -->
+            <div class="component-preview mb-8 bg-slate-900/50">
+                <h3 class="text-2xl font-semibold mb-6 gradient-text">Premium SVG Spinner</h3>
+                <div class="flex justify-center items-center py-12">
+                    <div class="premium-spinner gpu-accelerated">
+                        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                            <!-- Define Gradients -->
+                            <defs>
+                                <linearGradient id="spinnerGradient1" x1="0%" y1="0%" x2="100%" y2="100%" class="gradient-animated">
+                                    <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+                                    <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
+                                </linearGradient>
+                                <linearGradient id="spinnerGradient2" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#f093fb;stop-opacity:1" />
+                                    <stop offset="100%" style="stop-color:#f5576c;stop-opacity:1" />
+                                </linearGradient>
+                                <linearGradient id="spinnerGradient3" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#4facfe;stop-opacity:1" />
+                                    <stop offset="100%" style="stop-color:#00f2fe;stop-opacity:1" />
+                                </linearGradient>
+
+                                <!-- Blur for glow effect -->
+                                <filter id="glow">
+                                    <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+                                    <feMerge>
+                                        <feMergeNode in="coloredBlur"/>
+                                        <feMergeNode in="SourceGraphic"/>
+                                    </feMerge>
+                                </filter>
+                            </defs>
+
+                            <!-- Outer Ring -->
+                            <g class="spinner-ring-outer" filter="url(#glow)">
+                                <circle cx="50" cy="50" r="45" fill="none" stroke="url(#spinnerGradient1)" stroke-width="2"
+                                        stroke-dasharray="70 200" stroke-linecap="round" opacity="0.8"/>
+                            </g>
+
+                            <!-- Middle Ring -->
+                            <g class="spinner-ring-middle" filter="url(#glow)">
+                                <circle cx="50" cy="50" r="35" fill="none" stroke="url(#spinnerGradient2)" stroke-width="2.5"
+                                        stroke-dasharray="50 150" stroke-linecap="round" opacity="0.9"/>
+                            </g>
+
+                            <!-- Inner Ring -->
+                            <g class="spinner-ring-inner" filter="url(#glow)">
+                                <circle cx="50" cy="50" r="25" fill="none" stroke="url(#spinnerGradient3)" stroke-width="3"
+                                        stroke-dasharray="40 100" stroke-linecap="round"/>
+                            </g>
+
+                            <!-- Center Dots with Pulse -->
+                            <g class="spinner-dots">
+                                <circle cx="50" cy="50" r="6" fill="url(#spinnerGradient1)" opacity="0.9"/>
+                                <circle cx="50" cy="50" r="3" fill="white" opacity="0.8"/>
+                            </g>
+                        </svg>
+                    </div>
+                </div>
+                <div class="text-center mb-4">
+                    <p class="text-slate-400 text-sm">
+                        Multi-layered SVG spinner with gradient animations, counter-rotating rings, and glow effects
+                    </p>
+                </div>
+                <div class="code-block">
+                    <code>&lt;!-- HTML --&gt;
+&lt;div class="premium-spinner gpu-accelerated"&gt;
+    &lt;svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"&gt;
+        &lt;!-- Gradients defined in defs --&gt;
+        &lt;g class="spinner-ring-outer"&gt;
+            &lt;circle cx="50" cy="50" r="45" stroke="url(#gradient1)" .../&gt;
+        &lt;/g&gt;
+        &lt;g class="spinner-ring-middle"&gt;
+            &lt;circle cx="50" cy="50" r="35" stroke="url(#gradient2)" .../&gt;
+        &lt;/g&gt;
+        &lt;g class="spinner-ring-inner"&gt;
+            &lt;circle cx="50" cy="50" r="25" stroke="url(#gradient3)" .../&gt;
+        &lt;/g&gt;
+    &lt;/svg&gt;
+&lt;/div&gt;</code>
+                </div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-6">
+                <div class="component-preview">
+                    <h3 class="text-xl font-semibold mb-4">Simple Spinner (Legacy)</h3>
+                    <div class="spinner"></div>
+                    <div class="code-block mt-4">
+                        <code>@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.spinner {
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-top: 3px solid white;
+    width: 20px;
+    height: 20px;
+    animation: spin 0.8s linear infinite;
+}</code>
+                    </div>
+                </div>
+
+                <div class="component-preview">
+                    <h3 class="text-xl font-semibold mb-4">Pulse Ring</h3>
+                    <div class="w-20 h-20 bg-indigo-600 rounded-full pulse-ring"></div>
+                    <div class="code-block mt-4">
+                        <code>@keyframes pulseRing {
+    0% {
+        transform: scale(0.95);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.05);
+        opacity: 0.8;
+    }
+    100% {
+        transform: scale(0.95);
+        opacity: 1;
+    }
+}</code>
+                    </div>
+                </div>
+
+                <div class="component-preview">
+                    <h3 class="text-xl font-semibold mb-4">Shimmer Effect</h3>
+                    <div class="h-20 rounded-xl bg-slate-800 shimmer-effect"></div>
+                </div>
+
+                <div class="component-preview">
+                    <h3 class="text-xl font-semibold mb-4">Fade In Up</h3>
+                    <button onclick="this.classList.add('fade-in-up'); setTimeout(() => this.classList.remove('fade-in-up'), 800)"
+                            class="px-6 py-3 bg-indigo-600 rounded-lg">
+                        Click to Animate
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Typography -->
+        <section id="typography" class="section-card">
+            <h2 class="text-4xl font-bold mb-6">Typography</h2>
+
+            <div class="space-y-6">
+                <div>
+                    <h1 class="text-6xl font-bold mb-2">Heading 1</h1>
+                    <code class="text-slate-500">text-6xl font-bold</code>
+                </div>
+                <div>
+                    <h2 class="text-4xl font-bold mb-2">Heading 2</h2>
+                    <code class="text-slate-500">text-4xl font-bold</code>
+                </div>
+                <div>
+                    <h3 class="text-2xl font-semibold mb-2">Heading 3</h3>
+                    <code class="text-slate-500">text-2xl font-semibold</code>
+                </div>
+                <div>
+                    <p class="text-lg mb-2">Body Large - Regular paragraph text at larger size</p>
+                    <code class="text-slate-500">text-lg</code>
+                </div>
+                <div>
+                    <p class="text-base mb-2">Body Regular - Standard paragraph text</p>
+                    <code class="text-slate-500">text-base</code>
+                </div>
+                <div>
+                    <p class="text-sm text-slate-400 mb-2">Body Small - Secondary text and captions</p>
+                    <code class="text-slate-500">text-sm text-slate-400</code>
+                </div>
+                <div>
+                    <h2 class="text-5xl font-bold">
+                        Gradient <span class="gradient-text">Text</span>
+                    </h2>
+                    <code class="text-slate-500 block mt-2">gradient-text class</code>
+                </div>
+            </div>
+        </section>
+
+        <!-- Cards -->
+        <section id="cards" class="section-card">
+            <h2 class="text-4xl font-bold mb-6">Card Components</h2>
+
+            <div class="grid md:grid-cols-3 gap-6">
+                <div class="glass-container card-hover rounded-2xl p-6">
+                    <div class="w-12 h-12 bg-indigo-600 rounded-xl mb-4"></div>
+                    <h3 class="text-xl font-semibold mb-2">Feature Card</h3>
+                    <p class="text-slate-400">Hover me to see the lift effect with smooth transitions.</p>
+                </div>
+                <div class="glass-container card-hover rounded-2xl p-6">
+                    <div class="w-12 h-12 bg-purple-600 rounded-xl mb-4"></div>
+                    <h3 class="text-xl font-semibold mb-2">Feature Card</h3>
+                    <p class="text-slate-400">Glass morphism combined with hover animations.</p>
+                </div>
+                <div class="glass-container card-hover rounded-2xl p-6">
+                    <div class="w-12 h-12 bg-pink-600 rounded-xl mb-4"></div>
+                    <h3 class="text-xl font-semibold mb-2">Feature Card</h3>
+                    <p class="text-slate-400">Consistent spacing and beautiful shadows.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Parallax Effects -->
+        <section id="parallax" class="section-card">
+            <h2 class="text-4xl font-bold mb-6">Parallax Effects</h2>
+
+            <div class="component-preview">
+                <h3 class="text-xl font-semibold mb-4">Floating Shapes</h3>
+                <p class="text-slate-400 mb-4">The background features three floating gradient shapes with blur effects that animate smoothly in a loop.</p>
+                <div class="code-block">
+                    <code>@keyframes float {
+    0%, 100% {
+        transform: translate(0, 0) scale(1);
+    }
+    33% {
+        transform: translate(30px, -30px) scale(1.1);
+    }
+    66% {
+        transform: translate(-20px, 20px) scale(0.9);
+    }
+}
+
+.floating-shape {
+    animation: float 20s ease-in-out infinite;
+    filter: blur(80px);
+    opacity: 0.6;
+}</code>
+                </div>
+            </div>
+
+            <div class="component-preview">
+                <h3 class="text-xl font-semibold mb-4">Mouse Tracking Parallax</h3>
+                <p class="text-slate-400 mb-4">The entire parallax layer follows your mouse movement with smooth easing.</p>
+                <div class="code-block">
+                    <code>document.addEventListener('mousemove', (e) => {
+    mouseX = (e.clientX / window.innerWidth - 0.5) * 2;
+    mouseY = (e.clientY / window.innerHeight - 0.5) * 2;
+});
+
+function animateParallax() {
+    currentX += (mouseX * 20 - currentX) * 0.05;
+    currentY += (mouseY * 20 - currentY) * 0.05;
+
+    parallaxLayer.style.transform = `translate(${currentX}px, ${currentY}px)`;
+    requestAnimationFrame(animateParallax);
+}</code>
+                </div>
+            </div>
+
+            <div class="component-preview">
+                <h3 class="text-xl font-semibold mb-4">Animated Grid Pattern</h3>
+                <p class="text-slate-400 mb-4">An animated grid that continuously moves to create depth.</p>
+                <div class="code-block">
+                    <code>.grid-pattern {
+    background-image:
+        linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+    background-size: 50px 50px;
+    animation: gridMove 20s linear infinite;
+}
+
+@keyframes gridMove {
+    0% { background-position: 0 0; }
+    100% { background-position: 50px 50px; }
+}</code>
+                </div>
+            </div>
+        </section>
+
+        <!-- Performance -->
+        <section id="performance" class="section-card">
+            <h2 class="text-4xl font-bold mb-6">Performance Optimizations</h2>
+
+            <div class="space-y-6">
+                <div>
+                    <h3 class="text-xl font-semibold mb-3 text-indigo-400">GPU Acceleration</h3>
+                    <p class="text-slate-400 mb-3">Force GPU rendering for smooth 60fps animations:</p>
+                    <div class="code-block">
+                        <code>.gpu-accelerated {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    perspective: 1000px;
+}</code>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-xl font-semibold mb-3 text-indigo-400">Will-Change Property</h3>
+                    <p class="text-slate-400 mb-3">Hint to the browser about upcoming animations:</p>
+                    <div class="code-block">
+                        <code>.parallax-layer {
+    will-change: transform;
+}</code>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-xl font-semibold mb-3 text-indigo-400">Custom Easing Functions</h3>
+                    <p class="text-slate-400 mb-3">Smooth, natural-feeling transitions:</p>
+                    <div class="code-block">
+                        <code>:root {
+    --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+    --ease-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.element {
+    transition: all 0.3s var(--ease-smooth);
+}</code>
+                    </div>
+                </div>
+
+                <div>
+                    <h3 class="text-xl font-semibold mb-3 text-indigo-400">RequestAnimationFrame</h3>
+                    <p class="text-slate-400 mb-3">Use RAF for smooth JavaScript animations:</p>
+                    <div class="code-block">
+                        <code>function animate() {
+    // Update animation values
+    element.style.transform = `translate(${x}px, ${y}px)`;
+    requestAnimationFrame(animate);
+}
+
+animate();</code>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CSS Variables Reference -->
+        <section class="section-card">
+            <h2 class="text-4xl font-bold mb-6">CSS Variables Reference</h2>
+            <div class="code-block">
+                <code>:root {
+    /* Color Palette */
+    --gradient-purple: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    --gradient-pink: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    --gradient-blue: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+    --gradient-indigo-purple: linear-gradient(to right, #667eea, #764ba2);
+    --gradient-text: linear-gradient(to right, #818cf8, #ec4899);
+
+    /* Semantic Colors */
+    --color-success: #34d399;
+    --color-error: #ef4444;
+    --color-warning: #fbbf24;
+    --color-info: #60a5fa;
+
+    /* Glass Morphism */
+    --glass-bg: rgba(15, 23, 42, 0.8);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --glass-hover-border: rgba(99, 102, 241, 0.3);
+
+    /* Timing Functions */
+    --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+    --ease-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}</code>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="text-center mt-16 text-slate-500">
+            <p>Modern Parallax Design System • Built with Tailwind CSS</p>
+            <p class="mt-2">Copy and paste any code snippet into your projects</p>
+        </footer>
+    </div>
+
+    <script>
+        // Parallax effect
+        let mouseX = 0;
+        let mouseY = 0;
+        let currentX = 0;
+        let currentY = 0;
+
+        document.addEventListener('mousemove', (e) => {
+            mouseX = (e.clientX / window.innerWidth - 0.5) * 2;
+            mouseY = (e.clientY / window.innerHeight - 0.5) * 2;
+        });
+
+        function animateParallax() {
+            currentX += (mouseX * 20 - currentX) * 0.05;
+            currentY += (mouseY * 20 - currentY) * 0.05;
+
+            const parallaxLayer = document.getElementById('parallaxLayer');
+            if (parallaxLayer) {
+                parallaxLayer.style.transform = `translate(${currentX}px, ${currentY}px)`;
+            }
+
+            requestAnimationFrame(animateParallax);
+        }
+
+        animateParallax();
+    </script>
+</body>
+</html>
