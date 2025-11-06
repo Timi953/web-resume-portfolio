@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: 'export',
-  basePath: '/projects',
+  // basePath removed - we're deploying directly to /projects/ via workflow
   trailingSlash: true,
   images: {
     unoptimized: true, // Required for static export
