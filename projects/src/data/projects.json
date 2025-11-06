@@ -5,7 +5,7 @@
       "title": "AI-Powered Website Builder",
       "tagline": "Generate professional websites from just 4 inputs using AI",
       "description": "Next-generation AI website builder that creates complete, production-ready HTML websites from minimal input. Powered by Claude Sonnet 4.5 and Perplexity AI for intelligent research and generation.",
-      "thumbnail": "/projects/images/projects/website-builder-new-thumb.webp",
+      "thumbnail": "/projects/images/projects/website-builder-new-thumb.svg",
       "featured": true,
       "status": "live",
 
@@ -55,7 +55,7 @@
       "title": "MCP Website Builder",
       "tagline": "AI website generation with multi-agent architecture using Model Context Protocol",
       "description": "Advanced AI-powered website generation system using MCP (Model Context Protocol) with 5 specialized agents. Creates complete Next.js websites from 4 parameters with deep research, 3 templates, and 9 professional themes.",
-      "thumbnail": "/projects/images/projects/mcp-website-builder-thumb.webp",
+      "thumbnail": "/projects/images/projects/mcp-website-builder-thumb.svg",
       "featured": true,
       "status": "live",
 
@@ -104,7 +104,7 @@
       "title": "Modern Auth Portal",
       "tagline": "Premium fullstack authentication with WebGL water ripples and glass morphism",
       "description": "Enterprise-grade authentication system featuring stunning water ripple effects, glass morphism UI, clean architecture, and comprehensive security. Built with Vite, Supabase, and WebGL.",
-      "thumbnail": "/projects/images/projects/modern-auth-portal-thumb.webp",
+      "thumbnail": "/projects/images/projects/modern-auth-portal-thumb.svg",
       "featured": true,
       "status": "live",
 
@@ -151,7 +151,7 @@
       "title": "GPU-Enhanced Parallax Design System",
       "tagline": "60 FPS parallax effects with glass morphism and MCP integration",
       "description": "Performance-optimized design system featuring multi-layer parallax backgrounds, glass morphism components, and AI-powered component generation through Model Context Protocol (MCP).",
-      "thumbnail": "/projects/images/projects/gpu-parallax-thumb.webp",
+      "thumbnail": "/projects/images/projects/gpu-parallax-thumb.svg",
       "featured": false,
       "status": "live",
 

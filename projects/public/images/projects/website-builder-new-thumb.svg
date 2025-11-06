@@ -1,0 +1,11 @@
+<svg width="800" height="600" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="aiGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f59e0b;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#ef4444;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <rect width="800" height="600" fill="url(#aiGrad)"/>
+  <text x="400" y="280" font-family="Arial, sans-serif" font-size="42" font-weight="bold" fill="#ffffff" text-anchor="middle">AI Website</text>
+  <text x="400" y="340" font-family="Arial, sans-serif" font-size="24" fill="#fef3c7" text-anchor="middle">Builder</text>
+</svg>
