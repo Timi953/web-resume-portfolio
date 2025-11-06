@@ -1,10 +1,8 @@
-name: Deploy Projects to GitHub Pages
+name: Deploy Full Site to GitHub Pages
 
 on:
   push:
     branches: ["main"]
-    paths:
-      - 'projects/**'
   workflow_dispatch:
 
 permissions:
@@ -28,21 +26,40 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: "20"
-          cache: 'npm'
-          cache-dependency-path: './projects/package-lock.json'
 
-      - name: Install dependencies
+      - name: Install Next.js dependencies
         working-directory: ./projects
         run: npm ci
 
-      - name: Build Next.js
+      - name: Build Next.js app
         working-directory: ./projects
         run: npm run build
+
+      - name: Create deployment directory
+        run: mkdir -p _site
+
+      - name: Copy static files to _site
+        run: |
+          # Copy root files
+          cp index.html _site/
+          cp CNAME _site/
+          cp .nojekyll _site/
+
+          # Copy resume folders
+          cp -r resume _site/
+          cp -r resume-mobile _site/
+
+          # Copy Next.js build output to /projects/
+          mkdir -p _site/projects
+          cp -r projects/out/* _site/projects/
+
+          # Copy project demos
+          cp -r projects/gpu-parallax _site/projects/
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./projects/out
+          path: ./_site
 
   deploy:
     environment:
